@@ -42,6 +42,21 @@ export const reducer = (state, action) => {
         categories: state.categories.filter((item) => item.id !== state.activeCategory.id),
         activeCategory: null,
       }
+    case 'UPDATE_ACTIVE_CATEGORY':
+      const editedCategory = {
+        ...state.activeCategory,
+        name: action.payload,
+      }
+      const idx = state.categories.findIndex((item) => item.id === editedCategory.id)
+      return {
+        ...state,
+        activeCategory: editedCategory,
+        categories: [
+          ...state.categories.slice(0, idx),
+          editedCategory,
+          ...state.categories.slice(idx + 1),
+        ]
+      }
     default:
       return {...state}
   }

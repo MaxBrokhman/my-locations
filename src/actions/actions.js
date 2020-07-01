@@ -19,3 +19,8 @@ export const setActiveCategory = (id, dispatch) => dispatch({
 export const deleteCategory = (dispatch) => dispatch({
   type: 'DELETE_CATEGORY',
 })
+
+export const updateActiveCategory = (value, dispatch) => dispatch({
+  type: 'UPDATE_ACTIVE_CATEGORY',
+  payload: value,
+})

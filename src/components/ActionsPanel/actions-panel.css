@@ -1,0 +1,15 @@
+.details-action::before {
+  background-image: url(./preview-black-18dp.svg);
+}
+
+.edit-action::before {
+  background-image: url(./edit-black-18dp.svg);
+}
+
+.delete-action::before {
+  background-image: url(./delete-black-18dp.svg);
+}
+
+.edit-action, .delete-action {
+  margin-left: 0.5em;
+}

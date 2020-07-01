@@ -4,19 +4,23 @@
   justify-content: space-between;
 }
 
-.toolbar .toolbar-caption {
-  margin-right: auto;
+.category-name-edit {
+  width: 500px;
 }
 
-.toolbar button.item-action-btn {
+.item-action-btn {
+  min-width: 100px;
   max-width: 100px;
   position: relative;
-  padding-left: 20px;
+  padding-left: 27px;
 }
 
-.toolbar button.item-action-btn.add-action {
+.item-action-btn.add-action {
   max-width: 200px;
-  padding-left: 25px;
+}
+
+.item-action-btn + .item-action-btn {
+  margin-left: 0.5em;
 }
 
 .item-action-btn::before {
@@ -27,18 +31,6 @@
   transform: translateY(-50%);
   width: 17px;
   height: 18px;
-}
-
-.details-action::before {
-  background-image: url(./preview-black-18dp.svg);
-}
-
-.edit-action::before {
-  background-image: url(./edit-black-18dp.svg);
-}
-
-.delete-action::before {
-  background-image: url(./delete-black-18dp.svg);
 }
 
 .add-action::before {
