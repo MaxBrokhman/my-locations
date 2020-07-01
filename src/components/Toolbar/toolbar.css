@@ -1,0 +1,46 @@
+.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar .toolbar-caption {
+  margin-right: auto;
+}
+
+.toolbar button.item-action-btn {
+  max-width: 100px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.toolbar button.item-action-btn.add-action {
+  max-width: 200px;
+  padding-left: 25px;
+}
+
+.item-action-btn::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 18px;
+}
+
+.details-action::before {
+  background-image: url(./preview-black-18dp.svg);
+}
+
+.edit-action::before {
+  background-image: url(./edit-black-18dp.svg);
+}
+
+.delete-action::before {
+  background-image: url(./delete-black-18dp.svg);
+}
+
+.add-action::before {
+  background-image: url(./add_circle-black-18dp.svg);
+}
