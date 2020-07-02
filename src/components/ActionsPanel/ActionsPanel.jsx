@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import { CATEGORY_DETAILS_PATHNAME } from '../App/config'
+
 import './actions-panel.css'
 
 export const ActionsPanel = ({ 
@@ -11,8 +13,8 @@ export const ActionsPanel = ({
   return (
     <div className="d-flex">
       {
-        pathname !== '/active-category' && (
-          <Link to="/active-category">
+        pathname !== CATEGORY_DETAILS_PATHNAME && (
+          <Link to={CATEGORY_DETAILS_PATHNAME}>
             <button 
               type="button" 
               className="btn btn-success item-action-btn details-action"

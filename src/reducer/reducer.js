@@ -1,6 +1,11 @@
 import { createContext, useContext } from 'react'
 
-export const initialState = {
+const STORAGE_KEY = `${window.location.host}-${window.location.origin}-state`
+
+const persistedState = localStorage.getItem(STORAGE_KEY)
+const parsedState = persistedState && JSON.parse(persistedState)
+
+export const initialState = parsedState || {
   categories: [],
   activeCategory: null,
   newCategoryName: '',
@@ -15,7 +20,7 @@ export const Context = createContext(initialContext)
 
 export const useAppContext = () => useContext(Context)
 
-export const reducer = (state, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case 'CREATE_CATEGORY':
       return {
@@ -60,4 +65,10 @@ export const reducer = (state, action) => {
     default:
       return {...state}
   }
+}
+
+export const persistReducer = (state, action) => {
+  const newState = reducer(state, action)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(newState))
+  return newState
 }

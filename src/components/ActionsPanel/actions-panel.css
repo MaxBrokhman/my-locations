@@ -1,13 +1,13 @@
 .details-action::before {
-  background-image: url(./preview-black-18dp.svg);
+  background-image: url(./img/preview-black-18dp.svg);
 }
 
 .edit-action::before {
-  background-image: url(./edit-black-18dp.svg);
+  background-image: url(./img/edit-black-18dp.svg);
 }
 
 .delete-action::before {
-  background-image: url(./delete-black-18dp.svg);
+  background-image: url(./img/delete-black-18dp.svg);
 }
 
 .edit-action, .delete-action {

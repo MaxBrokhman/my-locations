@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
+import { useEditing } from './hooks/useEditing'
+import { useCaption } from './hooks/useCaption'
 
 import './toolbar.css'
 
@@ -10,21 +12,21 @@ export const Toolbar = ({
   activeItem,
   deleteBtnHandler,
 }) => {
-  const [isEditing, setEditing] = useState(false)
-  const editBtnHandler = () => setEditing(true)
+  const {
+    editBtnHandler,
+    isEditing,
+    setEditing,
+  } = useEditing()
+  const { caption } = useCaption(activeItem)
   return (
     <div 
-      className="btn-group alert alert-primary toolbar" 
+      className="btn-group alert alert-primary toolbar d-flex justify-content-between" 
       role="group" 
       aria-label="Category actions"
     >
       <div className="input-group-prepend toolbar-caption">
         <span className="input-group-text">
-          {
-            activeItem 
-              ? activeItem.name 
-              : 'Categories'
-          }
+          {caption}
         </span>
       </div>
       {

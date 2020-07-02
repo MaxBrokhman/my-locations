@@ -1,7 +1,5 @@
 .toolbar {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 
 .category-name-edit {
@@ -34,5 +32,5 @@
 }
 
 .add-action::before {
-  background-image: url(./add_circle-black-18dp.svg);
+  background-image: url(./img/add_circle-black-18dp.svg);
 }

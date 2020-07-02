@@ -7,22 +7,24 @@ import {
 } from 'react-router-dom'
 
 import { 
-  reducer, 
+  persistReducer, 
   initialState, 
   Context,
 } from '../../reducer/reducer'
 import { Toolbar } from '../Toolbar/Toolbar'
 import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { NewCategory } from '../NewCategory/NewCategory'
-import { useNameInputHandler, useToolbarHandlers } from './hooks'
 import { CategoryDetails } from '../CategoryDetails/CategoryDetails'
+import { CATEGORY_DETAILS_PATHNAME, NEW_CATEGORY_PATHNAME } from './config'
+import { useNewCategoryForm } from './hooks/useNewCategoryForm'
+import { useToolbarHandlers } from './hooks/useToolbarHandlers'
 
 import './app.css'
 
 export const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const { nameInputHandler, submitNameHandler } = useNameInputHandler(state.newCategoryName, dispatch)
-  const {deleteBtnHandler} = useToolbarHandlers(dispatch)
+  const [state, dispatch] = useReducer(persistReducer, initialState)
+  const { nameInputHandler, submitNameHandler } = useNewCategoryForm(state.newCategoryName, dispatch)
+  const { deleteBtnHandler } = useToolbarHandlers(dispatch)
   return (
     <Context.Provider value={{ state, dispatch }}>
       <header>
@@ -49,14 +51,14 @@ export const App = () => {
                   </h2>
             }
           </Route>
-          <Route path="/new-category">
+          <Route path={NEW_CATEGORY_PATHNAME}>
             <NewCategory 
               nameInputHandler={nameInputHandler} 
               name={state.newCategoryName} 
               submitNameHandler={submitNameHandler}
             />
           </Route>
-          <Route path="/active-category">
+          <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
               state.activeCategory 
                 ? <CategoryDetails activeCategory={state.activeCategory} />

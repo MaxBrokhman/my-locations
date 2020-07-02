@@ -1,11 +1,12 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 
-import { useEditForm } from './hooks'
+import { useEditForm } from './hooks/useEditForm'
 
 export const EditCategory = ({ 
   name, 
   setEditing, 
 }) => {
+  let ref = useRef(null)
   const {
     editInputHandler, 
     editedName,
@@ -14,12 +15,8 @@ export const EditCategory = ({
   } = useEditForm({
     name,
     setEditing,
+    inputRef: ref,
   })
-  let ref = useRef(null)
-  useEffect(() => {
-    ref.current.focus()
-    return () => setEditing(false)
-  }, [setEditing])
   return (
     <form className="input-group category-name-edit" onSubmit={submitEditHandler}>
       <div className="input-group-prepend">

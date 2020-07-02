@@ -1,31 +1,26 @@
 import React from 'react'
 
 import { CategoriesItem } from '../CategoriesItem/CategoriesItem'
-import { useAppContext } from '../../reducer/reducer'
-import { setActiveCategory } from '../../actions/actions'
 import { OutsideClick } from '../OutsideClick/OutsideClick'
-
-import './categories-list.css'
+import { useActiveItem } from './hooks/useActiveItem'
 
 export const CategoriesList = () => {
-  const {state, dispatch} = useAppContext()
-  const itemClickHandler = (id) => 
-    () => state.activeCategory && id === state.activeCategory.id 
-      ? setActiveCategory(null, dispatch)
-      : setActiveCategory(
-          state.categories.find((item) => item.id === id), 
-          dispatch,
-        )
+  const {
+    activeCategory,
+    categories,
+    dispatch,
+    itemClickHandler,
+  } = useActiveItem()
   return (
-    <div className="categories-list flex-grow-1">
+    <div className="categories-list d-flex flex-column flex-grow-1">
       <OutsideClick dispatch={dispatch}>
         <ul className="list-group">
           {
-            state.categories.map((item) => (
+            categories.map((item) => (
               <CategoriesItem 
                 name={item.name} 
                 key={item.id} 
-                isActive={state.activeCategory && item.id === state.activeCategory.id}
+                isActive={activeCategory && item.id === activeCategory.id}
                 clickHandler={itemClickHandler(item.id)}
               />
             ))
