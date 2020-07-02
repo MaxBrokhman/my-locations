@@ -1,16 +1,16 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
+
+import { useNewCategoryForm } from './hooks/useNewCategoryForm'
 
 import './new-category-form.css'
 
-export const NewCategory = ({
-  name, 
-  nameInputHandler,
-  submitNameHandler,
-}) => {
+export const NewCategory = () => {
   let ref = useRef(null)
-  useEffect(() => {
-    ref.current.focus()
-  }, [])
+  const {
+    nameInputHandler, 
+    submitNameHandler, 
+    name,
+  } = useNewCategoryForm(ref)
   return (
     <form className="new-category-form" onSubmit={submitNameHandler}>
       <div className="form-group">

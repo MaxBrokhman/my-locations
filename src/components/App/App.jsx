@@ -20,14 +20,12 @@ import {
   NEW_CATEGORY_PATHNAME, 
   MAIN_PATHNAME,
 } from './config'
-import { useNewCategoryForm } from './hooks/useNewCategoryForm'
 import { useToolbarHandlers } from './hooks/useToolbarHandlers'
 
 import './app.css'
 
 export const App = () => {
   const [state, dispatch] = useReducer(persistReducer, initialState)
-  const { nameInputHandler, submitNameHandler } = useNewCategoryForm(state.newCategoryName, dispatch)
   const { deleteBtnHandler } = useToolbarHandlers(dispatch)
   return (
     <Context.Provider value={{ state, dispatch }}>
@@ -56,11 +54,7 @@ export const App = () => {
             }
           </Route>
           <Route path={NEW_CATEGORY_PATHNAME}>
-            <NewCategory 
-              nameInputHandler={nameInputHandler} 
-              name={state.newCategoryName} 
-              submitNameHandler={submitNameHandler}
-            />
+            <NewCategory />
           </Route>
           <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
