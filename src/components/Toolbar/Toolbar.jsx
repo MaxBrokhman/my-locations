@@ -5,6 +5,7 @@ import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
 import { useEditing } from './hooks/useEditing'
 import { useCaption } from './hooks/useCaption'
+import { NEW_CATEGORY_PATHNAME } from '../App/config'
 
 import './toolbar.css'
 
@@ -46,7 +47,7 @@ export const Toolbar = ({
             />
           )
           : (
-            <Link to="/new-category">
+            <Link to={NEW_CATEGORY_PATHNAME}>
               <button type="button" className="btn btn-success item-action-btn add-action">
                 Add New Category
               </button>

@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom"
 import { enterCategoryName, createCategory } from "../../../actions/actions"
+import { MAIN_PATHNAME } from "../config"
 
 export const useNewCategoryForm = (name, dispatch) => {
   const history = useHistory()
@@ -8,7 +9,7 @@ export const useNewCategoryForm = (name, dispatch) => {
   const submitNameHandler = (evt) => {
     evt.preventDefault()
     createCategory(name, dispatch)
-    history.push('/')
+    history.push(MAIN_PATHNAME)
   }
   return {
     nameInputHandler,

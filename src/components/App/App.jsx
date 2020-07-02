@@ -15,7 +15,11 @@ import { Toolbar } from '../Toolbar/Toolbar'
 import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { NewCategory } from '../NewCategory/NewCategory'
 import { CategoryDetails } from '../CategoryDetails/CategoryDetails'
-import { CATEGORY_DETAILS_PATHNAME, NEW_CATEGORY_PATHNAME } from './config'
+import { 
+  CATEGORY_DETAILS_PATHNAME, 
+  NEW_CATEGORY_PATHNAME, 
+  MAIN_PATHNAME,
+} from './config'
 import { useNewCategoryForm } from './hooks/useNewCategoryForm'
 import { useToolbarHandlers } from './hooks/useToolbarHandlers'
 
@@ -30,7 +34,7 @@ export const App = () => {
       <header>
         <div className="container">
             <h1 className="display-4 page-heading">
-              <Link to="/">
+              <Link to={MAIN_PATHNAME}>
                 myLocations
               </Link>
             </h1>
@@ -40,9 +44,9 @@ export const App = () => {
           />
         </div>
       </header>
-      <div className="container main-container d-flex justify-content-center">
+      <main className="container main-container d-flex justify-content-center">
         <Switch>
-          <Route path="/" exact>
+          <Route path={MAIN_PATHNAME} exact>
             {
               state.categories.length 
                 ? <CategoriesList />
@@ -62,11 +66,11 @@ export const App = () => {
             {
               state.activeCategory 
                 ? <CategoryDetails activeCategory={state.activeCategory} />
-                : <Redirect to="/" />
+                : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>
         </Switch> 
-      </div>
+      </main>
     </Context.Provider>
   )
 }

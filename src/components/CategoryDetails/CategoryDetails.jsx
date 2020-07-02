@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { MAIN_PATHNAME } from '../App/config'
+
 import './category-details.css'
 
 export const CategoryDetails = ({ activeCategory }) => {
@@ -14,7 +16,7 @@ export const CategoryDetails = ({ activeCategory }) => {
           {activeCategory.name}
         </div>
       </div>
-      <Link to="/" className="align-self-center mt-2">
+      <Link to={MAIN_PATHNAME} className="align-self-center mt-2">
         <button type="button" className="btn btn-primary">
           Back to list
         </button>
