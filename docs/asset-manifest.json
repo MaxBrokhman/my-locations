@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/my-locations/static/css/main.d01eefd1.chunk.css",
+    "main.js": "/my-locations/static/js/main.3455d4ab.chunk.js",
+    "main.js.map": "/my-locations/static/js/main.3455d4ab.chunk.js.map",
+    "runtime-main.js": "/my-locations/static/js/runtime-main.6aeb2177.js",
+    "runtime-main.js.map": "/my-locations/static/js/runtime-main.6aeb2177.js.map",
+    "static/js/2.a8c877b1.chunk.js": "/my-locations/static/js/2.a8c877b1.chunk.js",
+    "static/js/2.a8c877b1.chunk.js.map": "/my-locations/static/js/2.a8c877b1.chunk.js.map",
+    "index.html": "/my-locations/index.html",
+    "precache-manifest.fea523ce261f0179784cbeaef634d5c8.js": "/my-locations/precache-manifest.fea523ce261f0179784cbeaef634d5c8.js",
+    "service-worker.js": "/my-locations/service-worker.js",
+    "static/css/main.d01eefd1.chunk.css.map": "/my-locations/static/css/main.d01eefd1.chunk.css.map",
+    "static/js/2.a8c877b1.chunk.js.LICENSE.txt": "/my-locations/static/js/2.a8c877b1.chunk.js.LICENSE.txt",
+    "static/media/toolbar.css": "/my-locations/static/media/add_circle-black-18dp.92586483.svg",
+    "static/media/actions-panel.css": "/my-locations/static/media/preview-black-18dp.0559cea4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6aeb2177.js",
+    "static/js/2.a8c877b1.chunk.js",
+    "static/css/main.d01eefd1.chunk.css",
+    "static/js/main.3455d4ab.chunk.js"
+  ]
+}
