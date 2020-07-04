@@ -3,13 +3,9 @@ import { useState, useEffect } from "react"
 import { updateActiveCategory } from "../../../actions/actions"
 import { useAppContext } from "../../../reducer/reducer"
 
-export const useEditForm = ({
-  name, 
-  setEditing,
-  inputRef,
-}) => {
-  const {dispatch} = useAppContext()
-  const [editedName, setName] = useState(name)
+export const useEditForm = ({ inputRef, setEditing }) => {
+  const {state, dispatch} = useAppContext()
+  const [editedName, setName] = useState(state.activeCategory.name)
   const editInputHandler = (evt) => setName(evt.target.value)
   const submitEditHandler = (evt) => {
     evt.preventDefault()

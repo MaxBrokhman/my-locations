@@ -2,7 +2,6 @@ import React, { useReducer } from 'react'
 import {
   Switch, 
   Route,
-  Link,
   Redirect,
 } from 'react-router-dom'
 
@@ -11,37 +10,23 @@ import {
   initialState, 
   Context,
 } from '../../reducer/reducer'
-import { Toolbar } from '../Toolbar/Toolbar'
 import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { NewCategory } from '../NewCategory/NewCategory'
 import { CategoryDetails } from '../CategoryDetails/CategoryDetails'
+import { Header } from '../Header/Header'
 import { 
   CATEGORY_DETAILS_PATHNAME, 
   NEW_CATEGORY_PATHNAME, 
   MAIN_PATHNAME,
 } from './config'
-import { useToolbarHandlers } from './hooks/useToolbarHandlers'
 
 import './app.css'
 
 export const App = () => {
   const [state, dispatch] = useReducer(persistReducer, initialState)
-  const { deleteBtnHandler } = useToolbarHandlers(dispatch)
   return (
     <Context.Provider value={{ state, dispatch }}>
-      <header>
-        <div className="container">
-            <h1 className="display-4 page-heading">
-              <Link to={MAIN_PATHNAME}>
-                myLocations
-              </Link>
-            </h1>
-          <Toolbar 
-            activeItem={state.activeCategory}
-            deleteBtnHandler={deleteBtnHandler} 
-          />
-        </div>
-      </header>
+      <Header />
       <main className="container main-container d-flex justify-content-center">
         <Switch>
           <Route path={MAIN_PATHNAME} exact>

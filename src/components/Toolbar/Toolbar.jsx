@@ -1,24 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { useAppContext } from '../../reducer/reducer'
 import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
-import { useEditing } from './hooks/useEditing'
+import { useActions } from './hooks/useActions'
 import { useCaption } from './hooks/useCaption'
 import { NEW_CATEGORY_PATHNAME } from '../App/config'
 
 import './toolbar.css'
 
-export const Toolbar = ({ 
-  activeItem,
-  deleteBtnHandler,
-}) => {
+export const Toolbar = () => {
+  const { state, dispatch } = useAppContext()
   const {
     editBtnHandler,
     isEditing,
     setEditing,
-  } = useEditing()
-  const { caption } = useCaption(activeItem)
+    deleteBtnHandler,
+  } = useActions(dispatch)
+  const { caption } = useCaption(state.activeCategory)
   return (
     <div 
       className="btn-group alert alert-primary toolbar d-flex justify-content-between" 
@@ -31,15 +31,12 @@ export const Toolbar = ({
         </span>
       </div>
       {
-        isEditing && activeItem && (
-          <EditCategory 
-            name={activeItem.name}
-            setEditing={setEditing}
-          />
+        isEditing && state.activeCategory && (
+          <EditCategory setEditing={setEditing} />
         )
       }
       {
-        activeItem 
+        state.activeCategory 
           ? (
             <ActionsPanel 
               deleteBtnHandler={deleteBtnHandler} 

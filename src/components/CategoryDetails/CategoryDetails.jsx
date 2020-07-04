@@ -5,22 +5,20 @@ import { MAIN_PATHNAME } from '../App/config'
 
 import './category-details.css'
 
-export const CategoryDetails = ({ activeCategory }) => {
-  return (
-    <section className="category-details d-flex flex-column">
-      <div className="card">
-        <div className="card-header">
-          Category Name:
-        </div>
-        <div className="list-group-item">
-          {activeCategory.name}
-        </div>
+export const CategoryDetails = ({ activeCategory }) => (
+  <section className="category-details d-flex flex-column">
+    <div className="card">
+      <div className="card-header">
+        Category Name:
       </div>
-      <Link to={MAIN_PATHNAME} className="align-self-center mt-2">
-        <button type="button" className="btn btn-primary">
-          Back to list
-        </button>
-      </Link>
-    </section>
-  )
-}
+      <div className="list-group-item">
+        {activeCategory.name}
+      </div>
+    </div>
+    <Link to={MAIN_PATHNAME} className="align-self-center mt-2">
+      <button type="button" className="btn btn-primary">
+        Back to list
+      </button>
+    </Link>
+  </section>
+)

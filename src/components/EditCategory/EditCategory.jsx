@@ -2,21 +2,14 @@ import React, { useRef } from 'react'
 
 import { useEditForm } from './hooks/useEditForm'
 
-export const EditCategory = ({ 
-  name, 
-  setEditing, 
-}) => {
+export const EditCategory = ({ setEditing }) => {
   let ref = useRef(null)
   const {
     editInputHandler, 
     editedName,
     submitEditHandler,
     cancelHandler,
-  } = useEditForm({
-    name,
-    setEditing,
-    inputRef: ref,
-  })
+  } = useEditForm({ inputRef: ref, setEditing })
   return (
     <form className="input-group category-name-edit" onSubmit={submitEditHandler}>
       <div className="input-group-prepend">
