@@ -1,35 +1,25 @@
 import React, { useRef } from 'react'
 
-import { useNewCategoryForm } from './hooks/useNewCategoryForm'
-import { NewItemInputField } from '../NewItemInputField/NewItemInputField'
-import { useNewItemFormSubmit } from './hooks/useNewItemFormSubmit'
-import { createCategory } from '../../actions/actions'
-import { useAppContext } from '../../reducer/reducer'
-import { CATEGORIES_PATHNAME } from '../App/config'
+import { useNameInput } from '../../hooks/useNameInput'
+import { NewItemNameInput } from '../NewItemNameInput/NewItemNameInput'
+import { useNewCategoryFormSubmit } from './hooks/useNewCategoryFormSubmit'
 
 import './new-category-form.css'
 
+const FIELD = 'Category'
+
 export const NewCategory = () => {
   let ref = useRef(null)
-  const { state, dispatch } = useAppContext()
-  const { nameHandler, name } = useNewCategoryForm(ref, 'name')
-  const { submitHandler } = useNewItemFormSubmit({ 
-    action: createCategory,
-    data: state.newCategoryName,
-    newUrl: CATEGORIES_PATHNAME,
-    dispatch,
-  })
+  const { changeHandler, name } = useNameInput(ref)
+  const { submitHandler } = useNewCategoryFormSubmit(name)
   
   return (
     <form className="new-category-form" onSubmit={submitHandler}>
-      <NewItemInputField
-        changeHandler={nameHandler}
-        field={'Category Name'}
-        id={'new-category-name'}
-        type="text" 
+      <NewItemNameInput
+        changeHandler={changeHandler}
+        field={FIELD}
         value={name}
         ref={ref}
-        caption={'Enter the name for a new location category.'}
       />
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>

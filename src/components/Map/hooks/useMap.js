@@ -1,5 +1,5 @@
-import mapboxgl from 'mapbox-gl'; 
 import { useEffect } from 'react'
+import mapboxgl from 'mapbox-gl'
 
 import { MAP_TOKEN, MAP_CONTAINER_ID } from '../config';
 

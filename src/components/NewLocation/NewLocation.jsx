@@ -1,16 +1,16 @@
 import React, { useRef } from 'react'
 
-import { NewItemInputField } from '../NewItemInputField/NewItemInputField'
-import { useNewItemFormSubmit } from '../NewCategory/hooks/useNewItemFormSubmit'
-import { addNewLocation } from '../../actions/actions'
-import { useAppContext } from '../../reducer/reducer'
-import { LOCATIONS_PATHNAME } from '../App/config'
-import { useNewCategoryForm } from '../NewCategory/hooks/useNewCategoryForm'
+import { NewItemNameInput } from '../NewItemNameInput/NewItemNameInput'
+import { useAppContext } from '../../hooks/useAppContext'
+import { useNameInput } from '../../hooks/useNameInput'
 import { useGeocoder } from './hooks/useGeocoder'
 import { Map } from '../Map/Map'
 import { useLocationCreation } from './hooks/useLocationCreation'
+import { useFormSubmit } from './hooks/useFormSubmit'
 
 import './new-location.css'
+
+const FIELD = 'Location'
 
 export const NewLocation = () => {
   let nameRef = useRef(null)
@@ -20,29 +20,24 @@ export const NewLocation = () => {
     updater, 
     selectHandler,
   } = useLocationCreation()
-  
-  const { nameHandler, name } = useNewCategoryForm(nameRef, 'name')
-  const { submitHandler } = useNewItemFormSubmit({
-    action: addNewLocation,
+  let btnRef = useRef(null)
+  const { changeHandler, name } = useNameInput(nameRef)
+  const { submitHandler } = useFormSubmit({
+    dispatch, 
     data: {
       ...location,
       name,
-      id: new Date().getTime(),
     },
-    dispatch,
-    newUrl: LOCATIONS_PATHNAME,
+    ref: btnRef,
   })
   useGeocoder(updater)
   return (
     <form className="new-category-form" onSubmit={submitHandler}>
-      <NewItemInputField
-        changeHandler={nameHandler}
-        field={'Location Name'}
-        id={'new-location-name'}
-        type="text" 
+      <NewItemNameInput
+        changeHandler={changeHandler}
+        field={FIELD}
         value={name}
         ref={nameRef}
-        caption={'Enter the name for a new location.'}
       />
       <div className="form-group">
         <label htmlFor='new-location-address'>Location Address</label>
@@ -50,18 +45,22 @@ export const NewLocation = () => {
         <small className="form-text text-muted">Enter the address for a new location.</small>
       </div>
       <Map />
-      <select 
-        className="form-control" 
-        multiple 
-        onChange={selectHandler}
-      >
-        {
-          state.categories.map((category) => (
-            <option key={category.id} value={category.id}>{category.name}</option>
-          ))
-        }
-      </select>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <div className="form-group">
+        <label htmlFor='new-location-address'>Location Categories</label>
+        <select 
+          className="form-control" 
+          multiple 
+          onChange={selectHandler}
+        >
+          {
+            state.categories.map((category) => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))
+          }
+        </select>
+        <small className="form-text text-muted">Choose one or more location category.</small>
+      </div>
+      <button type="submit" className="btn btn-primary" ref={btnRef}>Submit</button>
     </form>
   )
 }

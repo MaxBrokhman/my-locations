@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 
-import { setActiveCategory } from '../../actions/actions'
+import { setAciveItem } from '../../actions/actions'
 import { isElementInteractive } from './utils'
 
 export const OutsideClick = ({ children, dispatch }) => {
@@ -12,7 +12,7 @@ export const OutsideClick = ({ children, dispatch }) => {
         && !ref.current.contains(evt.target) 
         && !evt.composedPath().some(isElementInteractive)
       ) {
-        setActiveCategory(null, dispatch)
+        setAciveItem(null, dispatch)
       }
     }
     document.addEventListener('click', clickHandler)

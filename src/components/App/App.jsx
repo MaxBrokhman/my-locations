@@ -10,7 +10,6 @@ import {
   initialState, 
   Context,
 } from '../../reducer/reducer'
-import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { NewCategory } from '../NewCategory/NewCategory'
 import { CategoryDetails } from '../CategoryDetails/CategoryDetails'
 import { Header } from '../Header/Header'
@@ -23,8 +22,10 @@ import {
   NEW_LOCATION_PATHNAME,
 } from './config'
 import { Footer } from '../Footer/Footer'
-import { Locations } from '../Locations/Locations'
 import { NewLocation } from '../NewLocation/NewLocation'
+import { List } from '../List/List'
+import { CategoriesItem } from '../CategoriesItem/CategoriesItem'
+import { LocationItem } from '../LocationItem/LocationItem'
 
 import './app.css'
 
@@ -38,7 +39,7 @@ export const App = () => {
           <Route path={CATEGORIES_PATHNAME}>
             {
               state.categories.length 
-                ? <CategoriesList />
+                ? <List list={state.categories} Component={CategoriesItem} />
                 : <h2 className="display-4 text-center list-heading align-self-center flex-1">
                     There is no categories yet
                   </h2>
@@ -47,7 +48,7 @@ export const App = () => {
           <Route path={LOCATIONS_PATHNAME}>
             {
               state.locations.length 
-                ? <Locations />
+                ? <List list={state.locations} Component={LocationItem} />
                 : <h2 className="display-4 text-center list-heading align-self-center flex-1">
                     There is no locations yet
                   </h2>
@@ -61,8 +62,8 @@ export const App = () => {
           </Route>
           <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
-              state.activeCategory 
-                ? <CategoryDetails activeCategory={state.activeCategory} />
+              state.activeItem 
+                ? <CategoryDetails activeCategory={state.activeItem} />
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>

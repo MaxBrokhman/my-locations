@@ -1,9 +1,8 @@
 import React from 'react'
 
-import './categories-item.css'
 import { useItemSelection } from '../../hooks/useItemSelection'
 
-export const CategoriesItem = ({ item, clickHandler }) => {
+export const LocationItem = ({ item, clickHandler }) => {
   const { className } = useItemSelection(item.id)
   return (
     <li 

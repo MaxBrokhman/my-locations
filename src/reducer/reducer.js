@@ -1,20 +1,14 @@
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 
 const STORAGE_KEY = `${window.location.host}-${window.location.origin}-state`
 
 const persistedState = localStorage.getItem(STORAGE_KEY)
 const parsedState = persistedState && JSON.parse(persistedState)
-// const location = {
-//   id: '1',
-//   name: 'my favorite',
-//   address: 'Tel Aviv',
-//   coordinates: [31.11, 32.22],
-//   categories: [],
-// }
+
 export const initialState = parsedState || {
   categories: [],
   locations: [],
-  activeCategory: null,
+  activeItem: null,
   newCategoryName: '',
 }
 
@@ -24,8 +18,6 @@ const initialContext = {
 }
 
 export const Context = createContext(initialContext)
-
-export const useAppContext = () => useContext(Context)
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,26 +35,26 @@ const reducer = (state, action) => {
         ...state,
         newCategoryName: action.payload,
       }
-    case 'SET_ACTIVE_CATEGORY':
+    case 'SET_ACTIVE_ITEM':
       return {
         ...state,
-        activeCategory: action.payload,
+        activeItem: action.payload,
       }
     case 'DELETE_CATEGORY':
       return {
         ...state,
-        categories: state.categories.filter((item) => item.id !== state.activeCategory.id),
-        activeCategory: null,
+        categories: state.categories.filter((item) => item.id !== state.activeItem.id),
+        activeItem: null,
       }
     case 'UPDATE_ACTIVE_CATEGORY':
       const editedCategory = {
-        ...state.activeCategory,
+        ...state.activeItem,
         name: action.payload,
       }
       const idx = state.categories.findIndex((item) => item.id === editedCategory.id)
       return {
         ...state,
-        activeCategory: editedCategory,
+        activeItem: editedCategory,
         categories: [
           ...state.categories.slice(0, idx),
           editedCategory,

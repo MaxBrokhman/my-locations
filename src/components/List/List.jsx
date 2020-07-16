@@ -1,27 +1,20 @@
 import React from 'react'
 
-import { CategoriesItem } from '../CategoriesItem/CategoriesItem'
 import { OutsideClick } from '../OutsideClick/OutsideClick'
 import { useActiveItem } from './hooks/useActiveItem'
 
-export const CategoriesList = () => {
-  const {
-    activeCategory,
-    categories,
-    dispatch,
-    itemClickHandler,
-  } = useActiveItem()
+export const List = ({ list, Component }) => {
+  const { dispatch, itemClickHandler } = useActiveItem(list)
   return (
     <div className="categories-list d-flex flex-column flex-grow-1">
       <OutsideClick dispatch={dispatch}>
         <ul className="list-group">
           {
-            categories.map((item) => (
-              <CategoriesItem 
-                name={item.name} 
-                key={item.id} 
-                isActive={activeCategory && item.id === activeCategory.id}
+            list.map((item) => (
+              <Component
                 clickHandler={itemClickHandler(item.id)}
+                item={item}
+                key={item.id} 
               />
             ))
           }

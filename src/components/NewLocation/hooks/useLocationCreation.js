@@ -1,7 +1,14 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+const initialState = {
+  categories: [],
+  coordinates: [],
+  name: '',
+  address: '',
+} 
 
 export const useLocationCreation = () => {
-  const [location, setLocation] = useState({})
+  const [location, setLocation] = useState(initialState)
   const updater = (newData) => setLocation({
     ...location,
     ...newData,
@@ -16,6 +23,9 @@ export const useLocationCreation = () => {
       })
     }
   }
+
+  useEffect(() => () => setLocation(initialState), [])
+
   return {
     location,
     updater,

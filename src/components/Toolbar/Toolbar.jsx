@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useAppContext } from '../../reducer/reducer'
+import { useAppContext } from '../../hooks/useAppContext'
 import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
 import { useActions } from './hooks/useActions'
@@ -17,7 +17,7 @@ export const Toolbar = () => {
     setEditing,
     deleteBtnHandler,
   } = useActions(dispatch)
-  const { caption } = useCaption(state.activeCategory)
+  const { caption } = useCaption(state.activeItem)
   return (
     <div 
       className="btn-group alert alert-primary toolbar d-flex justify-content-between" 
@@ -30,12 +30,12 @@ export const Toolbar = () => {
         </span>
       </div>
       {
-        isEditing && state.activeCategory && (
+        isEditing && state.activeItem && (
           <EditCategory setEditing={setEditing} />
         )
       }
       {
-        state.activeCategory 
+        state.activeItem 
           ? <ActionsPanel 
             deleteBtnHandler={deleteBtnHandler} 
             editBtnHandler={editBtnHandler} 
