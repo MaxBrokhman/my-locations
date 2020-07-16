@@ -4,9 +4,16 @@ const STORAGE_KEY = `${window.location.host}-${window.location.origin}-state`
 
 const persistedState = localStorage.getItem(STORAGE_KEY)
 const parsedState = persistedState && JSON.parse(persistedState)
-
+// const location = {
+//   id: '1',
+//   name: 'my favorite',
+//   address: 'Tel Aviv',
+//   coordinates: [31.11, 32.22],
+//   categories: [],
+// }
 export const initialState = parsedState || {
   categories: [],
+  locations: [],
   activeCategory: null,
   newCategoryName: '',
 }
@@ -60,6 +67,14 @@ const reducer = (state, action) => {
           ...state.categories.slice(0, idx),
           editedCategory,
           ...state.categories.slice(idx + 1),
+        ]
+      }
+    case 'ADD_NEW_LOCATION':
+      return {
+        ...state,
+        locations: [
+          ...state.locations,
+          { ...action.payload },
         ]
       }
     default:

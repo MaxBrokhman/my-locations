@@ -1,7 +1,15 @@
-.main-container {
-  height: 70vh;
+#root {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.categories-heading {
+.main-container {
+  flex: 1;
+}
+
+.list-heading {
   font-size: 2em; 
 }

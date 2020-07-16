@@ -1,12 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { useAppContext } from '../../reducer/reducer'
 import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
 import { useActions } from './hooks/useActions'
 import { useCaption } from './hooks/useCaption'
-import { NEW_CATEGORY_PATHNAME } from '../App/config'
+import { NewItemButton } from '../NewItemButton/NewItemButton'
 
 import './toolbar.css'
 
@@ -37,19 +36,11 @@ export const Toolbar = () => {
       }
       {
         state.activeCategory 
-          ? (
-            <ActionsPanel 
-              deleteBtnHandler={deleteBtnHandler} 
-              editBtnHandler={editBtnHandler} 
-            />
-          )
-          : (
-            <Link to={NEW_CATEGORY_PATHNAME}>
-              <button type="button" className="btn btn-success item-action-btn add-action">
-                Add New Category
-              </button>
-            </Link>
-          )
+          ? <ActionsPanel 
+            deleteBtnHandler={deleteBtnHandler} 
+            editBtnHandler={editBtnHandler} 
+          />
+          : <NewItemButton />
       }
     </div>
   )

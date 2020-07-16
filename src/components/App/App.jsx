@@ -18,7 +18,13 @@ import {
   CATEGORY_DETAILS_PATHNAME, 
   NEW_CATEGORY_PATHNAME, 
   MAIN_PATHNAME,
+  CATEGORIES_PATHNAME,
+  LOCATIONS_PATHNAME,
+  NEW_LOCATION_PATHNAME,
 } from './config'
+import { Footer } from '../Footer/Footer'
+import { Locations } from '../Locations/Locations'
+import { NewLocation } from '../NewLocation/NewLocation'
 
 import './app.css'
 
@@ -29,17 +35,29 @@ export const App = () => {
       <Header />
       <main className="container main-container d-flex justify-content-center">
         <Switch>
-          <Route path={MAIN_PATHNAME} exact>
+          <Route path={CATEGORIES_PATHNAME}>
             {
               state.categories.length 
                 ? <CategoriesList />
-                : <h2 className="display-4 text-center categories-heading align-self-center">
+                : <h2 className="display-4 text-center list-heading align-self-center flex-1">
                     There is no categories yet
+                  </h2>
+            }
+          </Route>
+          <Route path={LOCATIONS_PATHNAME}>
+            {
+              state.locations.length 
+                ? <Locations />
+                : <h2 className="display-4 text-center list-heading align-self-center flex-1">
+                    There is no locations yet
                   </h2>
             }
           </Route>
           <Route path={NEW_CATEGORY_PATHNAME}>
             <NewCategory />
+          </Route>
+          <Route path={NEW_LOCATION_PATHNAME}>
+            <NewLocation />
           </Route>
           <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
@@ -48,8 +66,9 @@ export const App = () => {
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>
-        </Switch> 
+        </Switch>
       </main>
+      <Footer />
     </Context.Provider>
   )
 }

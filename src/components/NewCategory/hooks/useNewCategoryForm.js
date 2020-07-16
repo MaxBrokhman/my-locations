@@ -1,29 +1,18 @@
-import { useHistory } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
-import { enterCategoryName, createCategory } from "../../../actions/actions"
-import { MAIN_PATHNAME } from "../../App/config"
-import { useAppContext } from "../../../reducer/reducer"
-
-export const useNewCategoryForm = (inputRef) => {
-  const { state, dispatch } = useAppContext() 
-  const history = useHistory()
-  const nameInputHandler = (evt) => enterCategoryName(evt.target.value, dispatch)
-
-  const submitNameHandler = (evt) => {
-    evt.preventDefault()
-    createCategory(state.newCategoryName, dispatch)
-    history.push(MAIN_PATHNAME)
-  }
+export const useNewCategoryForm = (inputRef, fieldName) => {
+  const [field, setField] = useState('')
+  const changeHandler = (evt) => setField(evt.target.value)
 
   useEffect(() => {
-    inputRef.current.focus()
-    return () => enterCategoryName('', dispatch)
-  }, [dispatch, inputRef])
+    if (inputRef) {
+      inputRef.current.focus()
+    }
+    return () => setField('')
+  }, [inputRef])
 
   return {
-    nameInputHandler,
-    submitNameHandler,
-    name: state.newCategoryName,
+    [fieldName]: field,
+    [`${fieldName}Handler`]: changeHandler,
   }
 }

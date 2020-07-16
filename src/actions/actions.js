@@ -24,3 +24,8 @@ export const updateActiveCategory = (value, dispatch) => dispatch({
   type: 'UPDATE_ACTIVE_CATEGORY',
   payload: value,
 })
+
+export const addNewLocation = (location, dispatch) => dispatch({
+  type: 'ADD_NEW_LOCATION',
+  payload: location,
+})
