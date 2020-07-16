@@ -32,3 +32,8 @@ export const createLocation = (location, dispatch) => dispatch({
     id: new Date().getTime(),
   },
 })
+
+export const setFilter = (filter, dispatch) => dispatch({
+  type: 'SET_FILTER',
+  payload: filter,
+})

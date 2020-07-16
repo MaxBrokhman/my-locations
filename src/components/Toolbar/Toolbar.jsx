@@ -5,7 +5,7 @@ import { EditCategory } from '../EditCategory/EditCategory'
 import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
 import { useActions } from './hooks/useActions'
 import { useCaption } from './hooks/useCaption'
-import { NewItemButton } from '../NewItemButton/NewItemButton'
+import { DefaultActions } from '../DefaultActions/DefaultActions'
 
 import './toolbar.css'
 
@@ -20,7 +20,7 @@ export const Toolbar = () => {
   const { caption } = useCaption(state.activeItem)
   return (
     <div 
-      className="btn-group alert alert-primary toolbar d-flex justify-content-between" 
+      className="btn-group alert alert-secondary toolbar d-flex justify-content-between" 
       role="group" 
       aria-label="Category actions"
     >
@@ -40,7 +40,7 @@ export const Toolbar = () => {
             deleteBtnHandler={deleteBtnHandler} 
             editBtnHandler={editBtnHandler} 
           />
-          : <NewItemButton />
+          : <DefaultActions />
       }
     </div>
   )

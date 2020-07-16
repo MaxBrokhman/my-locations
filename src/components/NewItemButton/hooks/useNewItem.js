@@ -1,13 +1,12 @@
-import { useLocation } from "react-router-dom"
-
 import { NEW_CATEGORY_PATHNAME, NEW_LOCATION_PATHNAME } from "../../App/config"
 
-export const useNewItem = () => {
-  const { pathname } = useLocation()
-  const isCategoriesPage = pathname.toLowerCase().includes('categorie') 
+const CATEGORY = 'Category'
+const LOCATION = 'Location'
+
+export const useNewItem = (isCategoriesPage) => {
   const capture = isCategoriesPage
-    ? 'Category'
-    : 'Location'
+    ? CATEGORY
+    : LOCATION
   const linkUrl = isCategoriesPage
     ? NEW_CATEGORY_PATHNAME 
     : NEW_LOCATION_PATHNAME

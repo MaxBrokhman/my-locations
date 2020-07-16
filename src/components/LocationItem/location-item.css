@@ -1,0 +1,7 @@
+.category-badge-container {
+  max-width: 50%;
+}
+
+.category-badge + .category-badge {
+  margin-left: 0.2em;
+}

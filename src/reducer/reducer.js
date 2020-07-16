@@ -10,6 +10,7 @@ export const initialState = parsedState || {
   locations: [],
   activeItem: null,
   newCategoryName: '',
+  filter: '',
 }
 
 const initialContext = {
@@ -44,6 +45,10 @@ const reducer = (state, action) => {
       return {
         ...state,
         categories: state.categories.filter((item) => item.id !== state.activeItem.id),
+        locations: state.locations.map((location) => ({
+          ...location,
+          categories: location.categories.filter((item) => item.id !== state.activeItem.id),
+        })),
         activeItem: null,
       }
     case 'UPDATE_ACTIVE_CATEGORY':
@@ -68,6 +73,11 @@ const reducer = (state, action) => {
           ...state.locations,
           { ...action.payload },
         ]
+      }
+    case 'SET_FILTER':
+      return {
+        ...state,
+        filter: action.payload,
       }
     default:
       return {...state}
