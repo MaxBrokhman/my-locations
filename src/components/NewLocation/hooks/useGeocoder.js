@@ -58,7 +58,6 @@ export const useGeocoder = (updater) => {
     })
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map))
     geocoder.on('result', ({ result }) => {
-      console.log(result, result.center, result.place_name)
       updater({
         coordinates: result.center,
         address: result.place_name,

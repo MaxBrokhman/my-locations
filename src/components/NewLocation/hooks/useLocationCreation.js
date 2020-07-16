@@ -2,16 +2,23 @@ import { useState } from "react"
 
 export const useLocationCreation = () => {
   const [location, setLocation] = useState({})
-  const updater = (newData) => {
-    console.log('new data', newData, location)
-    setLocation({
+  const updater = (newData) => setLocation({
     ...location,
     ...newData,
   })
-  console.log(location);
-}
+
+  const selectHandler = (evt) => {
+    if (evt.target.selectedOptions) {
+      const options = Array.from(evt.target.selectedOptions)
+      setLocation({
+        ...location,
+        categories: options.map((option) => option.value),
+      })
+    }
+  }
   return {
     location,
     updater,
+    selectHandler,
   }
 }

@@ -9,7 +9,6 @@ export const useNewItemFormSubmit = ({
   const history = useHistory()
   const submitHandler = (evt) => {
     evt.preventDefault()
-    console.log(data)
     action(data, dispatch)
     history.push(newUrl)
   }

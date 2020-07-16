@@ -14,8 +14,12 @@ import './new-location.css'
 
 export const NewLocation = () => {
   let nameRef = useRef(null)
-  const { dispatch } = useAppContext()
-  const { location, updater } = useLocationCreation()
+  const { state, dispatch } = useAppContext()
+  const { 
+    location, 
+    updater, 
+    selectHandler,
+  } = useLocationCreation()
   
   const { nameHandler, name } = useNewCategoryForm(nameRef, 'name')
   const { submitHandler } = useNewItemFormSubmit({
@@ -46,6 +50,17 @@ export const NewLocation = () => {
         <small className="form-text text-muted">Enter the address for a new location.</small>
       </div>
       <Map />
+      <select 
+        className="form-control" 
+        multiple 
+        onChange={selectHandler}
+      >
+        {
+          state.categories.map((category) => (
+            <option key={category.id} value={category.id}>{category.name}</option>
+          ))
+        }
+      </select>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )

@@ -5,7 +5,6 @@ import { useAppContext } from '../../reducer/reducer'
 
 export const LocationsList = () => {
   const {state, dispatch} = useAppContext()
-  console.log(state);
   return (
     <div className="locations-list d-flex flex-column flex-grow-1">
       <OutsideClick dispatch={dispatch}>
