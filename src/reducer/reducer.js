@@ -11,6 +11,7 @@ export const initialState = parsedState || {
   activeItem: null,
   newCategoryName: '',
   filter: '',
+  sort: 'asc'
 }
 
 const initialContext = {
@@ -78,6 +79,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         filter: action.payload,
+      }
+    case 'SET_SORT':
+      return {
+        ...state,
+        sort: action.payload,
       }
     default:
       return {...state}

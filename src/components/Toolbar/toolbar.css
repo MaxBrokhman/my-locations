@@ -15,6 +15,7 @@
 
 .item-action-btn.add-action {
   max-width: 200px;
+  margin-left: 1em;
 }
 
 .item-action-btn + .item-action-btn {

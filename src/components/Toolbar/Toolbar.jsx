@@ -6,6 +6,7 @@ import { ActionsPanel } from '../ActionsPanel/ActionsPanel'
 import { useActions } from './hooks/useActions'
 import { useCaption } from './hooks/useCaption'
 import { DefaultActions } from '../DefaultActions/DefaultActions'
+import { useLocationDetection } from './hooks/useLocationDetection'
 
 import './toolbar.css'
 
@@ -17,7 +18,8 @@ export const Toolbar = () => {
     setEditing,
     deleteBtnHandler,
   } = useActions(dispatch)
-  const { caption } = useCaption(state.activeItem)
+  const { isCategoriesPage } = useLocationDetection()
+  const { caption } = useCaption(state.activeItem, isCategoriesPage)
   return (
     <div 
       className="btn-group alert alert-secondary toolbar d-flex justify-content-between" 

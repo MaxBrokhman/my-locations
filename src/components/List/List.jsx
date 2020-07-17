@@ -8,7 +8,7 @@ import { useFilteredList } from './hooks/useFilteredList'
 export const List = ({ list, Component }) => {
   const { isCategoriesPage } = useLocationDetection()
   const { dispatch, itemClickHandler } = useActiveItem(list)
-  const { filteredList } = useFilteredList({
+  const { sortedList } = useFilteredList({
     isCategories: isCategoriesPage,
     list,
   })
@@ -17,7 +17,7 @@ export const List = ({ list, Component }) => {
       <OutsideClick dispatch={dispatch}>
         <ul className="list-group">
           {
-            filteredList.map((item) => (
+            sortedList.map((item) => (
               <Component
                 clickHandler={itemClickHandler(item.id)}
                 item={item}

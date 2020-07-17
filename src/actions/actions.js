@@ -37,3 +37,8 @@ export const setFilter = (filter, dispatch) => dispatch({
   type: 'SET_FILTER',
   payload: filter,
 })
+
+export const setSort = (sort, dispatch) => dispatch({
+  type: 'SET_SORT',
+  payload: sort,
+})
