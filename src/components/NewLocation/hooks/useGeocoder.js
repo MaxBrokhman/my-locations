@@ -7,6 +7,7 @@ import { MAP_TOKEN, MAP_CONTAINER_ID } from '../../Map/config'
 mapboxgl.accessToken = MAP_TOKEN
 
 const COORDS_REG = /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+const INITIAL_COORDS = [-74.5, 40]
 
 const coordinateFeature = (lng, lat) => ({
   center: [lng, lat],
@@ -43,29 +44,54 @@ const coordinatesGeocoder = (query) => {
   return geocodes
 }
 
-export const useGeocoder = (updater) => {
+export const useGeocoder = (updater, initialData) => {
   useEffect(() => {
+    const initialCoords = initialData 
+      ? initialData.coordinates
+      : INITIAL_COORDS
+
     const map = new mapboxgl.Map({
       container: MAP_CONTAINER_ID,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40],
+      center: initialCoords,
       zoom: 9,
     })
+    
     const geocoder = new MapboxGeocoder({
       accessToken: MAP_TOKEN,
       mapboxgl: mapboxgl,
       localGeocoder: coordinatesGeocoder,
       reverseGeocode: true,
+      trackProximity: false,
+      proximity:'',
     })
+    
+    const geocoderHandler = ({ result }) => updater({
+      coordinates: result.center,
+      address: result.place_name,
+    })
+
+    const mapClickHandler = (evt) => geocoder.query(`${evt.lngLat.lng}, ${evt.lngLat.lat}`)
+
+    const mapLoadHandler = () => {
+      if (initialData) {
+        new mapboxgl.Marker()
+          .setLngLat(initialData.coordinates)
+          .addTo(map)
+        geocoder.setInput(initialData.address)
+      }
+    }
+
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map))
-    geocoder.on('result', ({ result }) => {
-      updater({
-        coordinates: result.center,
-        address: result.place_name,
-      })
-   })
-   map.on('click', (evt) => {
-    geocoder.query(`${evt.lngLat.lng}, ${evt.lngLat.lat}`)
-   })
+    geocoder.on('result', geocoderHandler)
+    map.on('click', mapClickHandler)
+    map.on('load', mapLoadHandler)
+
+    return () => {
+      geocoder.off('result', geocoderHandler)
+      map.off('click', mapClickHandler)
+      map.off('load', mapLoadHandler)
+      map.remove()
+    }
   }, [])
 }

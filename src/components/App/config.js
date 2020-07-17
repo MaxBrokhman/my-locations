@@ -16,3 +16,4 @@ export const CATEGORIES_PATHNAME = `${UNIFIED_PREFIX}categories`
 export const LOCATIONS_PATHNAME = `${UNIFIED_PREFIX}locations`
 export const NEW_LOCATION_PATHNAME = `${UNIFIED_PREFIX}new-location`
 export const LOCATION_DETAILS_PATHNAME = `${UNIFIED_PREFIX}active-location`
+export const LOCATION_EDITING_PATHNAME = `${UNIFIED_PREFIX}edit-location`

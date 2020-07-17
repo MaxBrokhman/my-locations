@@ -85,6 +85,23 @@ const reducer = (state, action) => {
         ...state,
         sort: action.payload,
       }
+    case 'UPDATE_LOCATION':
+      const editedLocation = {
+        ...state.activeItem,
+        ...action.payload,
+      }
+      const locationIdx = state.locations.findIndex(
+        (location) => location.id === editedLocation.id
+      )
+      return {
+        ...state,
+        locations: [
+          ...state.locations.slice(0, locationIdx),
+          editedLocation,
+          ...state.locations.slice(locationIdx + 1)
+        ],
+        activeItem: editedLocation,
+      }
     default:
       return {...state}
   }

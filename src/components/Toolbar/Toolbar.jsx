@@ -12,14 +12,19 @@ import './toolbar.css'
 
 export const Toolbar = () => {
   const { state, dispatch } = useAppContext()
+  const { isCategoriesPage } = useLocationDetection()
+  const { caption } = useCaption(state.activeItem, isCategoriesPage)
   const {
     editBtnHandler,
     isEditing,
     setEditing,
     deleteBtnHandler,
-  } = useActions(dispatch)
-  const { isCategoriesPage } = useLocationDetection()
-  const { caption } = useCaption(state.activeItem, isCategoriesPage)
+  } = useActions({
+    dispatch, 
+    isCategoriesPage,
+    activeItem: state.activeItem,
+    locations: state.locations,
+  })
   return (
     <div 
       className="btn-group alert alert-secondary toolbar d-flex justify-content-between" 

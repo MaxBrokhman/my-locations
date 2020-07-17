@@ -1,7 +1,14 @@
 import { useLocation } from "react-router-dom"
-import { LOCATION_DETAILS_PATHNAME, CATEGORY_DETAILS_PATHNAME } from "../../App/config"
 
-export const useActivePath = (isCategoriesPage) => {
+import { 
+  LOCATION_DETAILS_PATHNAME, 
+  CATEGORY_DETAILS_PATHNAME, 
+  LOCATION_EDITING_PATHNAME, 
+} from "../../App/config"
+import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+
+export const useActivePath = () => {
+  const { isCategoriesPage } = useLocationDetection()
   const { pathname } = useLocation()
   const activePath = isCategoriesPage 
     ? CATEGORY_DETAILS_PATHNAME
@@ -10,5 +17,6 @@ export const useActivePath = (isCategoriesPage) => {
     activePath: activePath === pathname 
       ? null
       : activePath,
+    isEditable: pathname !== LOCATION_EDITING_PATHNAME,
   }
 }

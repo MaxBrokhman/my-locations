@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-export const useNameInput = (inputRef) => {
-  const [name, setName] = useState('')
+export const useNameInput = (inputRef, initialValue) => {
+  const [name, setName] = useState(initialValue || '')
   const changeHandler = (evt) => setName(evt.target.value)
 
   useEffect(() => {

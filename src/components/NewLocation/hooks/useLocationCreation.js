@@ -7,8 +7,8 @@ const initialState = {
   address: '',
 } 
 
-export const useLocationCreation = () => {
-  const [location, setLocation] = useState(initialState)
+export const useLocationCreation = (data) => {
+  const [location, setLocation] = useState(data || initialState)
   const updater = (newData) => setLocation({
     ...location,
     ...newData,

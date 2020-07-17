@@ -21,15 +21,16 @@ import {
   LOCATIONS_PATHNAME,
   NEW_LOCATION_PATHNAME,
   LOCATION_DETAILS_PATHNAME,
+  LOCATION_EDITING_PATHNAME,
 } from './config'
 import { Footer } from '../Footer/Footer'
 import { NewLocation } from '../NewLocation/NewLocation'
 import { List } from '../List/List'
 import { CategoriesItem } from '../CategoriesItem/CategoriesItem'
 import { LocationItem } from '../LocationItem/LocationItem'
+import { LocationDetails } from '../LocationDetails/LocationDetails'
 
 import './app.css'
-import { LocationDetails } from '../LocationDetails/LocationDetails'
 
 export const App = () => {
   const [state, dispatch] = useReducer(persistReducer, initialState)
@@ -60,7 +61,7 @@ export const App = () => {
             <NewCategory />
           </Route>
           <Route path={NEW_LOCATION_PATHNAME}>
-            <NewLocation />
+            <NewLocation editableItem={null} />
           </Route>
           <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
@@ -73,6 +74,13 @@ export const App = () => {
             {
               state.activeItem 
                 ? <LocationDetails />
+                : <Redirect to={MAIN_PATHNAME} />
+            }
+          </Route>
+          <Route path={LOCATION_EDITING_PATHNAME}>
+            {
+              state.activeItem 
+                ? <NewLocation editableItem={state.activeItem} />
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>

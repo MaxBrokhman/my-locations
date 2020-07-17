@@ -16,6 +16,7 @@ export const NewItemNameInput = forwardRef(({
         onChange={changeHandler}
         value={value}
         ref={ref}
+        required
       />
       <small className="form-text text-muted">{`Enter the name for a new ${field}.`}</small>
     </div>

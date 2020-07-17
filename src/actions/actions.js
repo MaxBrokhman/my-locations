@@ -2,7 +2,7 @@ export const createCategory = (name, dispatch) => dispatch({
   type: 'CREATE_CATEGORY',
   payload: { 
     name, 
-    id: new Date().getTime(),
+    id: String(new Date().getTime()),
   },
 })
 
@@ -29,7 +29,7 @@ export const createLocation = (location, dispatch) => dispatch({
   type: 'ADD_NEW_LOCATION',
   payload: {
     ...location,
-    id: new Date().getTime(),
+    id: String(new Date().getTime()),
   },
 })
 
@@ -41,4 +41,9 @@ export const setFilter = (filter, dispatch) => dispatch({
 export const setSort = (sort, dispatch) => dispatch({
   type: 'SET_SORT',
   payload: sort,
+})
+
+export const updateLocation = (location, dispatch) => dispatch({
+  type: 'UPDATE_LOCATION',
+  payload: location,
 })

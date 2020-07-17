@@ -7,7 +7,6 @@ mapboxgl.accessToken = MAP_TOKEN
 
 export const useMap = (coords) => {
   useEffect(() => {
-    console.log(coords)
     const map = new mapboxgl.Map({
       container: MAP_CONTAINER_ID,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -17,5 +16,7 @@ export const useMap = (coords) => {
     new mapboxgl.Marker()
       .setLngLat(coords)
       .addTo(map)
+
+    return () => map.remove() 
   }, [])
 }
