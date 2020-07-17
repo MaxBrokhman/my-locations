@@ -13,3 +13,8 @@
 .list-heading {
   font-size: 2em; 
 }
+
+.category-details, .location-details {
+  width: 100%;
+  height: fit-content;
+}

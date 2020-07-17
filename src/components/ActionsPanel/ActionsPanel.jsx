@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { CATEGORY_DETAILS_PATHNAME } from '../App/config'
+import { useLocationDetection } from '../Toolbar/hooks/useLocationDetection'
+import { useActivePath } from './hooks/useActivePath'
 
 import './actions-panel.css'
 
@@ -9,12 +10,13 @@ export const ActionsPanel = ({
   editBtnHandler, 
   deleteBtnHandler,
 }) => {
-  const { pathname } = useLocation()
+  const { isCategoriesPage } = useLocationDetection()
+  const { activePath } = useActivePath(isCategoriesPage)
   return (
     <div className="d-flex">
       {
-        pathname !== CATEGORY_DETAILS_PATHNAME && (
-          <Link to={CATEGORY_DETAILS_PATHNAME}>
+        activePath && (
+          <Link to={activePath}>
             <button 
               type="button" 
               className="btn btn-success item-action-btn details-action"
