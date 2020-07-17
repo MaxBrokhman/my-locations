@@ -55,6 +55,7 @@ export const useGeocoder = (updater) => {
       accessToken: MAP_TOKEN,
       mapboxgl: mapboxgl,
       localGeocoder: coordinatesGeocoder,
+      reverseGeocode: true,
     })
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map))
     geocoder.on('result', ({ result }) => {
@@ -62,6 +63,9 @@ export const useGeocoder = (updater) => {
         coordinates: result.center,
         address: result.place_name,
       })
+   })
+   map.on('click', (evt) => {
+    geocoder.query(`${evt.lngLat.lng}, ${evt.lngLat.lat}`)
    })
   }, [])
 }

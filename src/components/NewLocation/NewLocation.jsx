@@ -42,7 +42,7 @@ export const NewLocation = () => {
       <div className="form-group">
         <label htmlFor='new-location-address'>Location Address</label>
           <div id="geocoder" className="geocoder"></div>
-        <small className="form-text text-muted">Enter the address for a new location.</small>
+        <small className="form-text text-muted">Enter the address or coordinates for a new location or choose a place by clicking on the map.</small>
       </div>
       <Map />
       <div className="form-group">
