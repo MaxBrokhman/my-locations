@@ -22,6 +22,7 @@ export const EditCategory = ({ setEditing }) => {
         value={editedName}
         onChange={editInputHandler}
         ref={ref}
+        required
       />
       <div className="input-group-append">
         <button 
