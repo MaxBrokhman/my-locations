@@ -29,7 +29,6 @@ const reducer = (state, action) => {
     case 'CREATE_CATEGORY':
       return {
         ...state,
-        newCategoryName: '',
         categories: [
           ...state.categories,
           action.payload,

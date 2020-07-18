@@ -9,6 +9,7 @@ export const ADDRESS = 'address'
 export const ID_FIELD = 'id'
 export const GEOCODER_CLASS = 'geocoder'
 export const FIELD = 'Location'
+export const CATEGORIES = 'categories'
 
 export const locationInitialState = {
   categories: [],

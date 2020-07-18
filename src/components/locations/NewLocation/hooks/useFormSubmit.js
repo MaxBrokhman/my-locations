@@ -7,19 +7,10 @@ import {
   ADDRESS_MESSAGE, 
   MESSAGE,
   COORDS,
-  ADDRESS, 
+  ADDRESS,
+  CATEGORIES, 
 } from "../config"
-import { findGeocoderInput } from "../utils"
-
-const checkValidation = ({
-  element, 
-  message, 
-  alignToTop,
-}) => {
-  element.scrollIntoView(alignToTop)
-  element.setCustomValidity(message)
-  element.reportValidity()
-}
+import { findGeocoderInput, checkValidation } from "../utils"
 
 export const useFormSubmit = ({
   dispatch, 
@@ -37,6 +28,7 @@ export const useFormSubmit = ({
     const emptyField = Object.entries(data).find(
       ([key, value]) => key !== ID_FIELD && !value.length
     )
+
     if (emptyField) {
       const isPlaceNotSelected = emptyField[0] === COORDS 
         || emptyField[0] === ADDRESS
@@ -52,12 +44,12 @@ export const useFormSubmit = ({
         ? checkValidation({
           element: input[0], 
           message, 
-          alignToTop: true,
+          alignToTop: input[0].name === CATEGORIES,
         }) 
         : checkValidation({
           element: input, 
           message, 
-          alignToTop: false,
+          alignToTop: input.name === CATEGORIES,
         })
 
     } else {
@@ -65,7 +57,7 @@ export const useFormSubmit = ({
       history.push(LOCATIONS_PATHNAME)
     }
   }
-
+  
   return {
     submitHandler,
   }

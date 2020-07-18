@@ -50,7 +50,7 @@ export const NewLocation = ({ editableItem }) => {
                   id={category.id} 
                   name="categories"
                   onChange={checkHandler}
-                  checked={locationCategories.includes(category.id)}
+                  checked={locationCategories.includes(category.id) || undefined}
                 />
                 <label className="form-check-label category-check-label" htmlFor={category.id}>
                   {category.name}

@@ -12,9 +12,12 @@ export const useLocationCreation = (data, formRef) => {
 
   const checkHandler = () => {
     if (formRef && formRef.current) {
-      const values = Array.from(formRef.current.categories)
-        .filter((input) => input.checked)
-        .map((input) => input.value)
+      // in case there is only one checkbox
+      const values = formRef.current.categories.length 
+        ? Array.from(formRef.current.categories)
+          .filter((input) => input.checked)
+          .map((input) => input.value)
+        : [formRef.current.categories.value]
 
       setLocation({
         ...location,
@@ -30,5 +33,6 @@ export const useLocationCreation = (data, formRef) => {
     updater,
     checkHandler,
     position,
+    setLocation,
   }
 }

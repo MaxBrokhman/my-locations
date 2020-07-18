@@ -43,3 +43,13 @@ export const coordinatesGeocoder = (query) => {
 
   return geocodes
 }
+
+export const checkValidation = ({
+  element, 
+  message, 
+  alignToTop,
+}) => {
+  element.scrollIntoView(alignToTop)
+  element.setCustomValidity(message)
+  element.reportValidity()
+}
