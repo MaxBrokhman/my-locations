@@ -4,6 +4,7 @@ export const NewItemNameInput = forwardRef(({
   field,
   changeHandler,
   value,
+  required,
 }, ref) => {
   const id = `new-${field.toLowerCase()}-name`
   return (
@@ -16,7 +17,8 @@ export const NewItemNameInput = forwardRef(({
         onChange={changeHandler}
         value={value}
         ref={ref}
-        required
+        name='name'
+        required={required}
       />
       <small className="form-text text-muted">{`Enter the name for a new ${field}.`}</small>
     </div>

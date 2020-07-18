@@ -19,10 +19,15 @@ export const useFilteredList = ({
       : filtredList.sort(sortStringsDesc)
     : filtredList
 
+  const wrapperClassName = sortedList.length 
+    ? 'justify-content-start'
+    : 'justify-content-center'
+
   useEffect(() => () => {
     setFilter('', dispatch)
   }, [])
   return {
     sortedList, 
+    wrapperClassName,
   }
 }

@@ -2,19 +2,23 @@ import { useState, useEffect } from "react"
 
 import { locationInitialState } from "../config"
 
-export const useLocationCreation = (data) => {
+export const useLocationCreation = (data, formRef) => {
   const [location, setLocation] = useState(data || locationInitialState)
-  const updater = (newData) => setLocation({
-    ...location,
+  const [position, setPosition] = useState({})
+  const updater = (newData) => {
+    setPosition({
     ...newData,
-  })
+  })}
 
-  const selectHandler = (evt) => {
-    if (evt.target.selectedOptions) {
-      const options = Array.from(evt.target.selectedOptions)
+  const checkHandler = () => {
+    if (formRef && formRef.current) {
+      const values = Array.from(formRef.current.categories)
+        .filter((input) => input.checked)
+        .map((input) => input.value)
+
       setLocation({
         ...location,
-        categories: options.map((option) => option.value),
+        categories: values,
       })
     }
   }
@@ -24,6 +28,7 @@ export const useLocationCreation = (data) => {
   return {
     location,
     updater,
-    selectHandler,
+    checkHandler,
+    position,
   }
 }

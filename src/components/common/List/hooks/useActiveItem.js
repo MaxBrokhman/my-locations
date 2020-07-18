@@ -1,6 +1,7 @@
 import { useAppContext } from "../../../../hooks/useAppContext"
 import { setAciveCategory, setActiveLocation } from "../../../../actions/actions"
 import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { LOCATIONS_CAPTION, CATEGORIES_CAPTION } from "../../Toolbar/config"
 
 export const useActiveItem = (list) => {
   const { state, dispatch } = useAppContext()
@@ -23,8 +24,13 @@ export const useActiveItem = (list) => {
       }
     }
 
+    const caption = isCategoriesPage 
+      ? CATEGORIES_CAPTION
+      : LOCATIONS_CAPTION
+
   return {
     itemClickHandler,
     dispatch,
+    caption,
   }
 }

@@ -1,10 +1,13 @@
 import { useAppContext } from "../../../../hooks/useAppContext"
-import { setFilter } from "../../../../actions/actions"
+import { setFilter, setActiveLocation } from "../../../../actions/actions"
 
 export const useCategoryDetails = () => {
   const { state, dispatch } = useAppContext()
 
-  const toLocationsClickHandler = () => setFilter(state.activeCategory.id, dispatch)
+  const toLocationsClickHandler = () => {
+    setActiveLocation(null, dispatch)
+    setFilter(state.activeCategory.id, dispatch)
+  }
 
   return {
     toLocationsClickHandler,

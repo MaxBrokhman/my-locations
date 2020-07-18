@@ -14,8 +14,9 @@ export const useNewLocation = ({
   const { 
     location, 
     updater, 
-    selectHandler,
-  } = useLocationCreation(editableItem)
+    checkHandler,
+    position,
+  } = useLocationCreation(editableItem, formRef)
   const { 
     initialName, 
     isEditing,
@@ -25,6 +26,7 @@ export const useNewLocation = ({
     dispatch, 
     data: {
       ...location,
+      ...position,
       name,
     },
     isEditing,
@@ -35,7 +37,7 @@ export const useNewLocation = ({
   return {
     submitHandler,
     changeHandler,
-    selectHandler,
+    checkHandler,
     name,
     locationCategories: location.categories,
     categories: state.categories,

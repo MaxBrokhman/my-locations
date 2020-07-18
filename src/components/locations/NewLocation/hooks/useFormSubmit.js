@@ -11,6 +11,16 @@ import {
 } from "../config"
 import { findGeocoderInput } from "../utils"
 
+const checkValidation = ({
+  element, 
+  message, 
+  alignToTop,
+}) => {
+  element.scrollIntoView(alignToTop)
+  element.setCustomValidity(message)
+  element.reportValidity()
+}
+
 export const useFormSubmit = ({
   dispatch, 
   data, 
@@ -18,7 +28,6 @@ export const useFormSubmit = ({
   formRef,
 }) => {
   const history = useHistory()
-
   const submitAction = isEditing 
     ? updateLocation
     : createLocation
@@ -29,15 +38,28 @@ export const useFormSubmit = ({
       ([key, value]) => key !== ID_FIELD && !value.length
     )
     if (emptyField) {
-      const message = emptyField[0] === COORDS || emptyField[0] === ADDRESS
+      const isPlaceNotSelected = emptyField[0] === COORDS 
+        || emptyField[0] === ADDRESS
+      const message = isPlaceNotSelected
         ? ADDRESS_MESSAGE
         : MESSAGE
-        
-      const searchInput = findGeocoderInput(formRef.current.elements)
-      if (message === ADDRESS_MESSAGE && searchInput) {
-        searchInput.setCustomValidity(message)
-        searchInput.reportValidity()
-      }
+      
+      const input = isPlaceNotSelected 
+        ? findGeocoderInput(formRef.current.elements)
+        : formRef.current[emptyField[0]]
+
+      input.length 
+        ? checkValidation({
+          element: input[0], 
+          message, 
+          alignToTop: true,
+        }) 
+        : checkValidation({
+          element: input, 
+          message, 
+          alignToTop: false,
+        })
+
     } else {
       submitAction(data, dispatch)
       history.push(LOCATIONS_PATHNAME)

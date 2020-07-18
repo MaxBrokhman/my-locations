@@ -26,3 +26,12 @@
   min-width: 100%;
   width: 100%;
 }
+
+.category-selection-wrapper {
+  max-height: 150px;
+  overflow: auto;
+}
+
+.category-check-input, .category-check-label {
+  cursor: pointer;
+}

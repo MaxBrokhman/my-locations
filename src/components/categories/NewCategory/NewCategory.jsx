@@ -20,6 +20,7 @@ export const NewCategory = () => {
         field={FIELD}
         value={name}
         ref={ref}
+        required={true}
       />
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>

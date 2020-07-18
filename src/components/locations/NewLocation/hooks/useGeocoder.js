@@ -13,7 +13,7 @@ export const useGeocoder = (updater, initialData) => {
     const initialCoords = initialData 
       ? initialData.coordinates
       : INITIAL_COORDS
-
+      
     const map = new mapboxgl.Map({
       container: MAP_CONTAINER_ID,
       style: MAPBOX_STYLES_URL,
@@ -42,6 +42,7 @@ export const useGeocoder = (updater, initialData) => {
         new mapboxgl.Marker()
           .setLngLat(initialData.coordinates)
           .addTo(map)
+          
         geocoder.setInput(initialData.address)
       }
     }
