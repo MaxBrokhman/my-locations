@@ -1,18 +1,5 @@
-.category-filter-label, .location-sort-label {
-  align-self: flex-end;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-  margin-bottom: .5rem;
-}
-
-.location-sort-label {
-  display: inline-block;
-}
-
 .category-filter {
-  margin-right: 0.5em;
   min-width: 100px;
-  padding-left: 0.2em;
   cursor: pointer;
 }
 

@@ -1,4 +1,5 @@
 import { createContext } from 'react'
+import { CATEGORY_TYPE } from '../components/App/config'
 
 const STORAGE_KEY = `${window.location.host}-${window.location.origin}-state`
 
@@ -8,10 +9,11 @@ const parsedState = persistedState && JSON.parse(persistedState)
 export const initialState = parsedState || {
   categories: [],
   locations: [],
-  activeItem: null,
-  newCategoryName: '',
+  activeCategory: null,
+  activeLocation: null,
   filter: '',
-  sort: 'asc'
+  sort: 'asc',
+  currentType: CATEGORY_TYPE,
 }
 
 const initialContext = {
@@ -32,35 +34,36 @@ const reducer = (state, action) => {
           action.payload,
         ]
       }
-    case 'ENTER_CATEGORY_NAME':
+    case 'SET_ACTIVE_CATEGORY':
       return {
         ...state,
-        newCategoryName: action.payload,
+        activeCategory: action.payload,
       }
-    case 'SET_ACTIVE_ITEM':
+    case 'SET_ACTIVE_LOCATION':
       return {
         ...state,
-        activeItem: action.payload,
+        activeLocation: action.payload,
       }
     case 'DELETE_CATEGORY':
       return {
         ...state,
-        categories: state.categories.filter((item) => item.id !== state.activeItem.id),
+        categories: state.categories.filter((item) => item.id !== state.activeCategory.id),
         locations: state.locations.map((location) => ({
           ...location,
-          categories: location.categories.filter((item) => item.id !== state.activeItem.id),
+          categories: location.categories.filter((item) => item !== state.activeCategory.id),
         })),
-        activeItem: null,
+        activeCategory: null,
+        filter: '',
       }
     case 'UPDATE_ACTIVE_CATEGORY':
       const editedCategory = {
-        ...state.activeItem,
+        ...state.activeCategory,
         name: action.payload,
       }
       const idx = state.categories.findIndex((item) => item.id === editedCategory.id)
       return {
         ...state,
-        activeItem: editedCategory,
+        activeCategory: editedCategory,
         categories: [
           ...state.categories.slice(0, idx),
           editedCategory,
@@ -87,7 +90,7 @@ const reducer = (state, action) => {
       }
     case 'UPDATE_LOCATION':
       const editedLocation = {
-        ...state.activeItem,
+        ...state.activeLocation,
         ...action.payload,
       }
       const locationIdx = state.locations.findIndex(
@@ -100,7 +103,14 @@ const reducer = (state, action) => {
           editedLocation,
           ...state.locations.slice(locationIdx + 1)
         ],
-        activeItem: editedLocation,
+        activeLocation: editedLocation,
+      }
+    case 'DELETE_LOCATION':
+      return {
+        ...state,
+        locations: state.locations.filter((item) => item.id !== state.activeLocation.id),
+        activeLocation: null,
+        filter: '',
       }
     default:
       return {...state}

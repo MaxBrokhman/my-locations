@@ -17,7 +17,6 @@ import {
   CATEGORY_DETAILS_PATHNAME, 
   NEW_CATEGORY_PATHNAME, 
   MAIN_PATHNAME,
-  CATEGORIES_PATHNAME,
   LOCATIONS_PATHNAME,
   NEW_LOCATION_PATHNAME,
   LOCATION_DETAILS_PATHNAME,
@@ -39,7 +38,7 @@ export const App = () => {
       <Header />
       <main className="container main-container d-flex justify-content-center">
         <Switch>
-          <Route path={CATEGORIES_PATHNAME}>
+          <Route path={MAIN_PATHNAME} exact>
             {
               state.categories.length 
                 ? <List list={state.categories} Component={CategoriesItem} />
@@ -65,22 +64,22 @@ export const App = () => {
           </Route>
           <Route path={CATEGORY_DETAILS_PATHNAME}>
             {
-              state.activeItem 
-                ? <CategoryDetails activeCategory={state.activeItem} />
+              state.activeCategory 
+                ? <CategoryDetails />
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>
           <Route path={LOCATION_DETAILS_PATHNAME}>
             {
-              state.activeItem 
+              state.activeLocation 
                 ? <LocationDetails />
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>
           <Route path={LOCATION_EDITING_PATHNAME}>
             {
-              state.activeItem 
-                ? <NewLocation editableItem={state.activeItem} />
+              state.activeLocation 
+                ? <NewLocation editableItem={state.activeLocation} />
                 : <Redirect to={MAIN_PATHNAME} />
             }
           </Route>

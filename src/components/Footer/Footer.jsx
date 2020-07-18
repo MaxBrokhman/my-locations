@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { CATEGORIES_PATHNAME, LOCATIONS_PATHNAME } from '../App/config'
+
+import { LOCATIONS_PATHNAME, MAIN_PATHNAME } from '../App/config'
 
 import './footer.css'
 
@@ -15,7 +16,7 @@ export const Footer = () => (
         <Link to={LOCATIONS_PATHNAME}>
           <button type="button" className="btn btn-primary">Locations</button>
         </Link>
-        <Link to={CATEGORIES_PATHNAME}>
+        <Link to={MAIN_PATHNAME}>
           <button type="button" className="btn btn-primary">Categories</button>
         </Link>
       </div>

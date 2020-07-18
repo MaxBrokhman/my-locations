@@ -2,14 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { useNewItem } from './hooks/useNewItem'
-import { useLocationDetection } from '../Toolbar/hooks/useLocationDetection'
 
 export const NewItemButton = () => {
-  const { isCategoriesPage } = useLocationDetection()
-  const { capture, url } = useNewItem(isCategoriesPage)
+  const { 
+    capture, 
+    url,
+    isDisabled,
+    title,
+  } = useNewItem()
   return (
     <Link to={url}>
-      <button type="button" className="btn btn-success item-action-btn add-action">
+      <button 
+        type="button" 
+        className="btn btn-success item-action-btn add-action"
+        title={title}
+        disabled={isDisabled}
+      >
         Add New {capture}
       </button>
     </Link>

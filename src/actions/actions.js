@@ -6,13 +6,8 @@ export const createCategory = (name, dispatch) => dispatch({
   },
 })
 
-export const enterCategoryName = (name, dispatch) => dispatch({
-  type: 'ENTER_CATEGORY_NAME',
-  payload: name,
-})
-
-export const setAciveItem = (id, dispatch) => dispatch({
-  type: 'SET_ACTIVE_ITEM',
+export const setAciveCategory = (id, dispatch) => dispatch({
+  type: 'SET_ACTIVE_CATEGORY',
   payload: id,
 })
 
@@ -47,3 +42,13 @@ export const updateLocation = (location, dispatch) => dispatch({
   type: 'UPDATE_LOCATION',
   payload: location,
 })
+
+export const deleteLocation = (dispatch) => dispatch({
+  type: 'DELETE_LOCATION',
+})
+
+export const setActiveLocation = (id, dispatch) => dispatch({
+  type: 'SET_ACTIVE_LOCATION',
+  payload: id,
+})
+

@@ -5,7 +5,7 @@ import { useAppContext } from "../../../hooks/useAppContext"
 
 export const useEditForm = ({ inputRef, setEditing }) => {
   const {state, dispatch} = useAppContext()
-  const [editedName, setName] = useState(state.activeItem.name)
+  const [editedName, setName] = useState(state.activeCategory.name)
   const editInputHandler = (evt) => setName(evt.target.value)
   const submitEditHandler = (evt) => {
     evt.preventDefault()

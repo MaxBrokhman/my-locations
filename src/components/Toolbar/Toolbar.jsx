@@ -7,13 +7,20 @@ import { useActions } from './hooks/useActions'
 import { useCaption } from './hooks/useCaption'
 import { DefaultActions } from '../DefaultActions/DefaultActions'
 import { useLocationDetection } from './hooks/useLocationDetection'
+import { NewItemButton } from '../NewItemButton/NewItemButton'
 
 import './toolbar.css'
 
 export const Toolbar = () => {
   const { state, dispatch } = useAppContext()
-  const { isCategoriesPage } = useLocationDetection()
-  const { caption } = useCaption(state.activeItem, isCategoriesPage)
+  const { 
+    isCategoriesPage, 
+    isLocationsPage,
+  } = useLocationDetection()
+  const activeItem = isCategoriesPage 
+    ? state.activeCategory 
+    : state.activeLocation
+  const { caption } = useCaption(activeItem, isCategoriesPage)
   const {
     editBtnHandler,
     isEditing,
@@ -22,7 +29,7 @@ export const Toolbar = () => {
   } = useActions({
     dispatch, 
     isCategoriesPage,
-    activeItem: state.activeItem,
+    activeItem: activeItem,
     locations: state.locations,
   })
   return (
@@ -37,17 +44,21 @@ export const Toolbar = () => {
         </span>
       </div>
       {
-        isEditing && state.activeItem && (
+        isEditing && activeItem && (
           <EditCategory setEditing={setEditing} />
         )
       }
       {
-        state.activeItem 
-          ? <ActionsPanel 
+        activeItem && <ActionsPanel 
             deleteBtnHandler={deleteBtnHandler} 
             editBtnHandler={editBtnHandler} 
           />
-          : <DefaultActions />
+      }
+      {
+        !activeItem && isLocationsPage && <DefaultActions />
+      }
+      {
+        !activeItem && <NewItemButton />
       }
     </div>
   )

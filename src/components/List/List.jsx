@@ -14,7 +14,7 @@ export const List = ({ list, Component }) => {
   })
   return (
     <div className="categories-list d-flex flex-column flex-grow-1">
-      <OutsideClick dispatch={dispatch}>
+      <OutsideClick dispatch={dispatch} isCategories={isCategoriesPage}>
         <ul className="list-group">
           {
             sortedList.map((item) => (

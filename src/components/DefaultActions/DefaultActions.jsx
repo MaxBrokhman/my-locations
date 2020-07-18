@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 
-import { NewItemButton } from '../NewItemButton/NewItemButton'
 import { useDefaultActions } from './hooks/useDefaultActions'
 
 import './default-actions.css'
@@ -11,26 +10,28 @@ export const DefaultActions = () => {
     changeFilterHandler,
     sortBtnClickHandler,
     sortBtnStatusClass,
+    filter,
   } = useDefaultActions()
   return (
     <Fragment>
       <div className="d-flex">
-        <span className="location-sort-label">
+        <span className="location-sort-label ml-2 mr-2 mb-2 align-self-end">
           Sort by: 
         </span>
         <button 
-          className={`btn btn-secondary sort-btn ${sortBtnStatusClass}`}
+          className={`btn btn-secondary sort-btn ml-2 ${sortBtnStatusClass}`}
           onClick={sortBtnClickHandler}
         >
           Name
         </button>
-        <label className="category-filter-label" htmlFor="category-filter">
+        <label className="category-filter-label ml-4 mr-2 mb-2 align-self-end" htmlFor="category-filter">
           Filter by category: 
         </label>
         <select 
-          className="btn btn-secondary category-filter" 
+          className="btn btn-secondary category-filter ml-2 mr-1 pl-1" 
           id="category-filter"
           onChange={changeFilterHandler}
+          value={filter}
         >
           <option value="">No filter</option>
           {
@@ -40,7 +41,6 @@ export const DefaultActions = () => {
           }
         </select>
       </div>
-      <NewItemButton />
     </Fragment>
   )
 }

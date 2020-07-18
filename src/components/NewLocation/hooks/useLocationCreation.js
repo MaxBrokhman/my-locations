@@ -5,6 +5,7 @@ const initialState = {
   coordinates: [],
   name: '',
   address: '',
+  id: null,
 } 
 
 export const useLocationCreation = (data) => {

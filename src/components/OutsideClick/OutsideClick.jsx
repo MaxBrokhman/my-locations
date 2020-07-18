@@ -1,9 +1,13 @@
 import React, { useRef, useEffect } from 'react'
 
-import { setAciveItem } from '../../actions/actions'
+import { setAciveCategory, setActiveLocation } from '../../actions/actions'
 import { isElementInteractive } from './utils'
 
-export const OutsideClick = ({ children, dispatch }) => {
+export const OutsideClick = ({ 
+  children, 
+  dispatch, 
+  isCategories, 
+}) => {
   let ref = useRef(null)
   useEffect(() => {
     const clickHandler = (evt) => {
@@ -12,13 +16,15 @@ export const OutsideClick = ({ children, dispatch }) => {
         && !ref.current.contains(evt.target) 
         && !evt.composedPath().some(isElementInteractive)
       ) {
-        setAciveItem(null, dispatch)
+        isCategories 
+          ? setAciveCategory(null, dispatch)
+          : setActiveLocation(null, dispatch)
       }
     }
     document.addEventListener('click', clickHandler)
 
     return () => document.removeEventListener('click', clickHandler)
-  }, [dispatch, ref])
+  }, [dispatch, ref, isCategories])
   return (
     <div ref={ref}>
       {children}

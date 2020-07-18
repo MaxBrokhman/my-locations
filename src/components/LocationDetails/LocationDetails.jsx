@@ -10,7 +10,7 @@ import './location-details.css'
 
 export const LocationDetails = () => {
   const { state } = useAppContext()
-  useMap(state.activeItem.coordinates)
+  useMap(state.activeLocation.coordinates)
   return (
     <section className="location-details d-flex flex-column">
       <div className="card details-filed">
@@ -18,7 +18,7 @@ export const LocationDetails = () => {
           Location Name:
         </div>
         <div className="list-group-item">
-          {state.activeItem.name}
+          {state.activeLocation.name}
         </div>
       </div>
       <div className="card details-filed">
@@ -26,7 +26,7 @@ export const LocationDetails = () => {
           Location Address:
         </div>
         <div className="list-group-item">
-          {state.activeItem.address}
+          {state.activeLocation.address}
         </div>
       </div>
       <Map />

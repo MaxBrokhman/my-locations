@@ -1,10 +1,13 @@
+import { useEffect } from "react"
+
 import { useAppContext } from "../../../hooks/useAppContext"
+import { setFilter } from "../../../actions/actions"
 
 export const useFilteredList = ({ 
   list,
   isCategories
 }) => {
-  const { state } = useAppContext()
+  const { state, dispatch } = useAppContext()
   const filtredList = !isCategories && state.filter 
     ? list.filter((item) => item.categories.includes(state.filter))
     : list
@@ -26,6 +29,9 @@ export const useFilteredList = ({
       })
     : filtredList
 
+  useEffect(() => () => {
+    setFilter('', dispatch)
+  }, [])
   return {
     sortedList, 
   }
