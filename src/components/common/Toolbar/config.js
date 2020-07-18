@@ -1,0 +1,5 @@
+export const NEW_CATEGORY_CAPTION = 'New Category'
+export const NEW_LOCATION_CAPTION = 'New Location'
+export const CATEGORIES_CAPTION = 'Categories'
+export const LOCATIONS_CAPTION = 'Locations'
+export const CATEGORIE_CHECK = 'categor'

@@ -1,5 +1,6 @@
 import { createContext } from 'react'
-import { CATEGORY_TYPE } from '../components/App/config'
+
+import { CATEGORY_TYPE, ASCENDING_SORT } from '../config'
 
 const STORAGE_KEY = `${window.location.host}-${window.location.origin}-mylocations-state`
 
@@ -12,7 +13,7 @@ export const initialState = parsedState || {
   activeCategory: null,
   activeLocation: null,
   filter: '',
-  sort: 'asc',
+  sort: ASCENDING_SORT,
   currentType: CATEGORY_TYPE,
 }
 

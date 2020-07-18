@@ -1,5 +1,5 @@
 import { useAppContext } from "./useAppContext"
-import { useLocationDetection } from "../components/Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../components/common/Toolbar/hooks/useLocationDetection"
 
 export const useItemSelection = (id) => {
   const { state } = useAppContext()
