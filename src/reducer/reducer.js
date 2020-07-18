@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { CATEGORY_TYPE } from '../components/App/config'
 
-const STORAGE_KEY = `${window.location.host}-${window.location.origin}-state`
+const STORAGE_KEY = `${window.location.host}-${window.location.origin}-mylocations-state`
 
 const persistedState = localStorage.getItem(STORAGE_KEY)
 const parsedState = persistedState && JSON.parse(persistedState)
@@ -113,7 +113,7 @@ const reducer = (state, action) => {
         filter: '',
       }
     default:
-      return {...state}
+      return { ...state }
   }
 }
 
