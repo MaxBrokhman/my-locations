@@ -44,7 +44,7 @@ export const Toolbar = () => {
         </span>
       </div>
       {
-        isEditing && activeItem && (
+        isEditing && activeItem && isCategoriesPage && (
           <EditCategory setEditing={setEditing} />
         )
       }
