@@ -1,9 +1,5 @@
 import React, { useReducer } from 'react'
-import {
-  Switch, 
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import { 
   persistReducer, 
@@ -23,7 +19,7 @@ import {
   LOCATION_EDITING_PATHNAME,
 } from '../../../config'
 import { Footer } from '../Footer/Footer'
-import { NewLocation } from '../../locations/NewLocation/NewLocation'
+import { NewLocation, EditableLocation } from '../../locations/NewLocation/NewLocation'
 import { List } from '../List/List'
 import { CategoriesItem } from '../../categories/CategoriesItem/CategoriesItem'
 import { LocationItem } from '../../locations/LocationItem/LocationItem'
@@ -53,25 +49,13 @@ export const App = () => {
               <NewLocation editableItem={null} />
             </Route>
             <Route path={CATEGORY_DETAILS_PATHNAME}>
-              {
-                state.activeCategory 
-                  ? <CategoryDetails />
-                  : <Redirect to={MAIN_PATHNAME} />
-              }
+              <CategoryDetails activeItem={state.activeCategory} />
             </Route>
             <Route path={LOCATION_DETAILS_PATHNAME}>
-              {
-                state.activeLocation 
-                  ? <LocationDetails />
-                  : <Redirect to={MAIN_PATHNAME} />
-              }
+              <LocationDetails activeItem={state.activeLocation} />
             </Route>
             <Route path={LOCATION_EDITING_PATHNAME}>
-              {
-                state.activeLocation 
-                  ? <NewLocation editableItem={state.activeLocation} />
-                  : <Redirect to={MAIN_PATHNAME} />
-              }
+              <EditableLocation activeItem={state.activeLocation} />
             </Route>
           </Switch>
         </main>

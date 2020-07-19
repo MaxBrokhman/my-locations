@@ -7,8 +7,9 @@ import { useMap } from '../Map/hooks/useMap'
 import { Map } from '../Map/Map'
 
 import './location-details.css'
+import { withActiveItem } from '../../../hocs/withActiveItem'
 
-export const LocationDetails = () => {
+const LocationDetailsComponent = () => {
   const { state } = useAppContext()
   useMap(state.activeLocation.coordinates)
   
@@ -56,3 +57,5 @@ export const LocationDetails = () => {
     </section>
   )
 }
+
+export const LocationDetails = withActiveItem(LocationDetailsComponent)

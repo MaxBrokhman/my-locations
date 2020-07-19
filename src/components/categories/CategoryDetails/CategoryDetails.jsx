@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 
 import { MAIN_PATHNAME, LOCATIONS_PATHNAME } from '../../../config'
 import { useCategoryDetails } from './hooks/useCategoryDetails'
+import { withActiveCategory, withActiveItem } from '../../../hocs/withActiveItem'
 
-export const CategoryDetails = () => {
+const CategoryDetailsComponent = () => {
   const { toLocationsClickHandler, name } = useCategoryDetails()
   return (
     <section className="category-details d-flex flex-column">
@@ -35,3 +36,5 @@ export const CategoryDetails = () => {
     </section>
   )
 }
+
+export const CategoryDetails = withActiveItem(CategoryDetailsComponent)

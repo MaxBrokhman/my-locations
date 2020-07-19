@@ -4,10 +4,11 @@ import { NewItemNameInput } from '../../common/NewItemNameInput/NewItemNameInput
 import { Map } from '../Map/Map'
 import { useNewLocation } from './hooks/useNewLocation'
 import { FIELD } from './config'
+import { withActiveItem } from '../../../hocs/withActiveItem'
 
 import './new-location.css'
 
-export const NewLocation = ({ editableItem }) => {
+export const NewLocation = ({ activeItem }) => {
   let nameRef = useRef(null)
   let formRef = useRef(null)
 
@@ -21,7 +22,7 @@ export const NewLocation = ({ editableItem }) => {
   } = useNewLocation({
     nameRef, 
     formRef,
-    editableItem,
+    editableItem: activeItem,
   })
 
   return (
@@ -64,3 +65,5 @@ export const NewLocation = ({ editableItem }) => {
     </form>
   )
 }
+
+export const EditableLocation = withActiveItem(NewLocation)
