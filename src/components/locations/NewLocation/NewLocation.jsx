@@ -5,6 +5,7 @@ import { Map } from '../Map/Map'
 import { useNewLocation } from './hooks/useNewLocation'
 import { FIELD } from './config'
 import { withActiveItem } from '../../../hocs/withActiveItem'
+import { LocationCategoriesSelection } from '../LocationCategoriesSelection/LocationCategoriesSelection'
 
 import './new-location.css'
 
@@ -39,28 +40,11 @@ export const NewLocation = ({ activeItem }) => {
         <small className="form-text text-muted">Enter the address or coordinates for a new location or choose a place by clicking on the map.</small>
       </div>
       <Map />
-      <div className="form-group category-selection-wrapper">
-        <span className="d-block mb-2">Location Categories</span>
-        {
-            categories.map((category) => (
-              <div className="form-check" key={category.id}>
-                <input 
-                  className="form-check-input category-check-input" 
-                  type="checkbox" 
-                  value={category.id} 
-                  id={category.id} 
-                  name="categories"
-                  onChange={checkHandler}
-                  checked={locationCategories.includes(category.id) || undefined}
-                />
-                <label className="form-check-label category-check-label" htmlFor={category.id}>
-                  {category.name}
-                </label>
-              </div>
-            ))
-          }
-        <small className="form-text text-muted">Choose one or more location category.</small>
-      </div>
+      <LocationCategoriesSelection 
+        checkHandler={checkHandler} 
+        locationCategories={locationCategories} 
+        categories={categories} 
+      />
       <button type="submit" className="btn btn-primary" onClick={submitHandler}>Submit</button>
     </form>
   )

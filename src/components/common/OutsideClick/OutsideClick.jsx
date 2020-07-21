@@ -1,30 +1,11 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
+import { useOutsideClick } from './hooks/useOutsideClick'
 
-import { setAciveCategory, setActiveLocation } from '../../../actions/actions'
-import { isElementInteractive } from './utils'
 
-export const OutsideClick = ({ 
-  children, 
-  dispatch, 
-  isCategories, 
-}) => {
+
+export const OutsideClick = ({ children }) => {
   let ref = useRef(null)
-  useEffect(() => {
-    const clickHandler = (evt) => {
-      if (
-        ref.current 
-        && !ref.current.contains(evt.target) 
-        && !evt.composedPath().some(isElementInteractive)
-      ) {
-        isCategories 
-          ? setAciveCategory(null, dispatch)
-          : setActiveLocation(null, dispatch)
-      }
-    }
-    document.addEventListener('click', clickHandler)
-
-    return () => document.removeEventListener('click', clickHandler)
-  }, [dispatch, ref, isCategories])
+  useOutsideClick(ref)
   return (
     <div ref={ref}>
       {children}

@@ -1,6 +1,5 @@
 .map {
   flex: 1;
-  margin-bottom: 1em;
   min-height: 500px;
 }
 .map canvas {

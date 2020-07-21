@@ -14,7 +14,7 @@ export const NewCategory = () => {
   const { submitHandler } = useNewCategoryFormSubmit(name)
   
   return (
-    <form className="new-category-form" onSubmit={submitHandler}>
+    <form className="new-category-form mb-2" onSubmit={submitHandler}>
       <NewItemNameInput
         changeHandler={changeHandler}
         field={FIELD}

@@ -5,10 +5,7 @@ import { useActivePath } from './hooks/useActivePath'
 
 import './actions-panel.css'
 
-export const ActionsPanel = ({ 
-  editBtnHandler, 
-  deleteBtnHandler,
-}) => {
+export const ActionsPanel = ({ editBtnHandler, deleteBtnHandler }) => {
   const { activePath, isEditable } = useActivePath()
   return (
     <div className="d-flex">
@@ -28,7 +25,7 @@ export const ActionsPanel = ({
         isEditable && (
           <button 
             type="button" 
-            className="btn btn-warning item-action-btn edit-action"
+            className="btn btn-warning item-action-btn edit-action ml-2"
             onClick={editBtnHandler}
           >
             Edit
@@ -37,7 +34,7 @@ export const ActionsPanel = ({
       }
       <button 
         type="button" 
-        className="btn btn-danger item-action-btn delete-action"
+        className="btn btn-danger item-action-btn delete-action ml-2"
         onClick={deleteBtnHandler}
       >
         Delete

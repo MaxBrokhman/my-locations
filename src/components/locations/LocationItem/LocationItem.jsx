@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { useItemSelection } from '../../../hooks/useItemSelection'
-import { useCategories } from './hooks/useCategories'
+import { useLocationItem } from './hooks/useLocationItem'
 
 import './location-item.css'
 
 export const LocationItem = ({ item, clickHandler }) => {
-  const { className } = useItemSelection(item.id)
-  const { categories } = useCategories(item.categories)
+  const { className, categories } = useLocationItem(item)
   return (
     <li 
       className={`${className} d-flex justify-content-between`}

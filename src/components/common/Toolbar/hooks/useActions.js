@@ -23,11 +23,11 @@ export const useActions = ({
       const isOnlyCategory = location.categories.length === 1
       return isLocationCategory && isOnlyCategory
     })
-    if (locationWithOneCategory) {
-      alert(getAlertMessage(locationWithOneCategory.name, activeItem.name))
-    } else {
-      deleteCategory(dispatch)
-    }
+    locationWithOneCategory 
+      ? alert(
+        getAlertMessage(locationWithOneCategory.name, activeItem.name)
+      )
+      : deleteCategory(dispatch)
   }
   
   const deleteBtnHandler = isCategoriesPage

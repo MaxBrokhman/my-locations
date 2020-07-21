@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { MAIN_PATHNAME, LOCATIONS_PATHNAME } from '../../../config'
 import { useCategoryDetails } from './hooks/useCategoryDetails'
-import { withActiveCategory, withActiveItem } from '../../../hocs/withActiveItem'
+import { withActiveItem } from '../../../hocs/withActiveItem'
 
 const CategoryDetailsComponent = () => {
   const { toLocationsClickHandler, name } = useCategoryDetails()
