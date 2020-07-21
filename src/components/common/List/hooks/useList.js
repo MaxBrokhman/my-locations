@@ -1,4 +1,4 @@
-import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 import { useFilteredList } from "./useFilteredList"
 import { useActiveItem } from "./useActiveItem"
 

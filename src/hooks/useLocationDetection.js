@@ -4,8 +4,8 @@ import {
   LOCATIONS_PATHNAME, 
   MAIN_PATHNAME, 
   URL_PREFIX, 
-} from "../../../../config"
-import { CATEGORIE_CHECK } from "../config"
+} from "../config"
+import { CATEGORIE_CHECK } from "../components/common/Toolbar/config"
 
 export const useLocationDetection = () => {
   const { pathname } = useLocation()

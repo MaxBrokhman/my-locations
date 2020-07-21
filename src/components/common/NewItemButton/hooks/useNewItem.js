@@ -1,5 +1,5 @@
 import { NEW_CATEGORY_PATHNAME, NEW_LOCATION_PATHNAME } from "../../../../config"
-import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 import { useAppContext } from "../../../../hooks/useAppContext"
 import { 
   DEFAULT_TITLE, 

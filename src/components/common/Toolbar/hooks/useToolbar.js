@@ -1,7 +1,7 @@
 import { useAppContext } from "../../../../hooks/useAppContext"
 import { useCaption } from "./useCaption"
 import { useActions } from "./useActions"
-import { useLocationDetection } from "./useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 
 export const useToolbar = () => {
   const { state, dispatch } = useAppContext()

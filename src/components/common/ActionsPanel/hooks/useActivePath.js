@@ -5,7 +5,7 @@ import {
   CATEGORY_DETAILS_PATHNAME, 
   LOCATION_EDITING_PATHNAME, 
 } from "../../../../config"
-import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 
 export const useActivePath = () => {
   const { isCategoriesPage } = useLocationDetection()

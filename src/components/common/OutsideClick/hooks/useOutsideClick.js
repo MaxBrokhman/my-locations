@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 import { useAppContext } from "../../../../hooks/useAppContext"
-import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 import { isElementInteractive } from '../utils'
 import { setAciveCategory, setActiveLocation } from "../../../../actions/actions"
 

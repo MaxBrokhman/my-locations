@@ -1,6 +1,6 @@
 import { useAppContext } from "../../../../hooks/useAppContext"
 import { setAciveCategory, setActiveLocation } from "../../../../actions/actions"
-import { useLocationDetection } from "../../Toolbar/hooks/useLocationDetection"
+import { useLocationDetection } from "../../../../hooks/useLocationDetection"
 import { LOCATIONS_CAPTION, CATEGORIES_CAPTION } from "../../Toolbar/config"
 
 export const useActiveItem = (list) => {
